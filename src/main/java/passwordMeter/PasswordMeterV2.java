@@ -8,8 +8,8 @@ public class PasswordMeterCopy {
 
     // Results
     public int bonusLength, countLength;
-    public int bonusAlphaUC, countAlphaUC;
-    public int bonusAlphaLC, countAlphaLC;
+    public int bonusAlphaUpperCase, countAlphaUpperCase;
+    public int bonusAlphaLowerCase, countAlphaLowerCase;
     public int bonusNumber, countNumber;
     public int bonusSymbol, countSymbol;
     public int bonusMidChar, countMidChar;
@@ -28,15 +28,27 @@ public class PasswordMeterCopy {
     public String[] levelsOfBonusItems = new String[2];
     public String[] levelsOfSuggestedItems = new String[9];
 
-    public void checkPassword(String candidate) {
-        password = candidate;
+    public void numberOfCharacters() {
         int multiplierLength = 4;
+        countLength = password.length();
+        score = password.length() * multiplierLength;
+    }
+
+    public void countOfConsecutiveLettersUpperCased() {
+
+    }
+
+    public String checkPassword(String candidate) {
+        password = candidate;
+
 
         Integer nTmpAlphaUC = null, nTmpAlphaLC = null, nTmpNumber = null;
         double incrementDeductionOfRepeatedChars = 0;
 
-        score = candidate.length() * multiplierLength;
-        countLength = candidate.length();
+
+        numberOfCharacters();
+
+
         String[] arrPwd = candidate.replaceAll("\\s+", "").split("\\s*");
 
         for (int i = 0; i < arrPwd.length; i++) {
@@ -47,7 +59,7 @@ public class PasswordMeterCopy {
                     }
                 }
                 nTmpAlphaUC = i;
-                countAlphaUC++;
+                countAlphaUpperCase++;
             } else if (arrPwd[i].matches("[a-z]")) {
                 if (nTmpAlphaLC != null) {
                     if (nTmpAlphaLC + 1 == i) {
@@ -55,7 +67,7 @@ public class PasswordMeterCopy {
                     }
                 }
                 nTmpAlphaLC = i;
-                countAlphaLC++;
+                countAlphaLowerCase++;
             } else if (arrPwd[i].matches("[0-9]")) {
                 if (i > 0 && i < arrPwd.length - 1) {
                     countMidChar++;
@@ -126,13 +138,13 @@ public class PasswordMeterCopy {
 
         /* General point assignment */
         bonusLength = score;
-        if (countAlphaUC > 0 && countAlphaUC < countLength) {
-            score = score + (countLength - countAlphaUC) * 2;
-            bonusAlphaUC = (countLength - countAlphaUC) * 2;
+        if (countAlphaUpperCase > 0 && countAlphaUpperCase < countLength) {
+            score = score + (countLength - countAlphaUpperCase) * 2;
+            bonusAlphaUpperCase = (countLength - countAlphaUpperCase) * 2;
         }
-        if (countAlphaLC > 0 && countAlphaLC < countLength) {
-            score = score + (countLength - countAlphaLC) * 2;
-            bonusAlphaLC = (countLength - countAlphaLC) * 2;
+        if (countAlphaLowerCase > 0 && countAlphaLowerCase < countLength) {
+            score = score + (countLength - countAlphaLowerCase) * 2;
+            bonusAlphaLowerCase = (countLength - countAlphaLowerCase) * 2;
         }
         if (countNumber > 0 && countNumber < countLength) {
             int multiplierNumber = 4;
@@ -151,12 +163,12 @@ public class PasswordMeterCopy {
         }
 
         /* Point deductions for poor practices */
-        if ((countAlphaLC > 0 || countAlphaUC > 0) && countSymbol == 0 && countNumber == 0) {  // Only Letters
+        if ((countAlphaLowerCase > 0 || countAlphaUpperCase > 0) && countSymbol == 0 && countNumber == 0) {  // Only Letters
             score = score - countLength;
             countAlphasOnly = countLength;
             bonusAlphasOnly = countLength;
         }
-        if (countAlphaLC == 0 && countAlphaUC == 0 && countSymbol == 0 && countNumber > 0) {  // Only Numbers
+        if (countAlphaLowerCase == 0 && countAlphaUpperCase == 0 && countSymbol == 0 && countNumber > 0) {  // Only Numbers
             score = score - countLength;
             countNumbersOnly = countLength;
             bonusNumbersOnly = countLength;
@@ -197,7 +209,7 @@ public class PasswordMeterCopy {
         }
 
         /* Determine if mandatory requirements have been met and set image indicators accordingly */
-        int[] arrChars = {countLength, countAlphaUC, countAlphaLC, countNumber, countSymbol};
+        int[] arrChars = {countLength, countAlphaUpperCase, countAlphaLowerCase, countNumber, countSymbol};
         String[] arrCharsIds = {"countLength", "countAlphaUC", "countAlphaLC", "countNumber", "countSymbol"};
         var arrCharsLen = arrChars.length;
         int MINIMUM_LENGTH = 8;
@@ -262,6 +274,7 @@ public class PasswordMeterCopy {
         } else {
             sComplexity = "Very Strong";
         }
+        return candidate;
     }
 
     @Override
@@ -272,8 +285,8 @@ public class PasswordMeterCopy {
 
                 + "\nAddictions"
                 + "\n[C: " + countLength + " | B: " + bonusLength + "] Number of Characters"
-                + "\n[C: " + countAlphaUC + " | B: " + bonusAlphaUC + "] Uppercase Letters"
-                + "\n[C: " + countAlphaLC + " | B: " + bonusAlphaLC + "] Lowercase Letters"
+                + "\n[C: " + countAlphaUpperCase + " | B: " + bonusAlphaUpperCase + "] Uppercase Letters"
+                + "\n[C: " + countAlphaLowerCase + " | B: " + bonusAlphaLowerCase + "] Lowercase Letters"
                 + "\n[C: " + countNumber + " | B: " + bonusNumber + "] Numbers"
                 + "\n[C: " + countSymbol + " | B: " + bonusSymbol + "] Symbols"
                 + "\n[C: " + countMidChar + " | B: " + bonusMidChar + "] Middle Numbers or Symbols"
@@ -290,4 +303,4 @@ public class PasswordMeterCopy {
                 + "\n[C: " + countSeqNumber + " | B: " + bonusSeqNumber + "] Sequential Numbers"
                 + "\n[C: " + countSeqSymbol + " | B: " + bonusSeqSymbol + "] Sequential Symbols";
     }
-} 
+}
