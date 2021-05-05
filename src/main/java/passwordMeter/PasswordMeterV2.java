@@ -28,18 +28,15 @@ public class PasswordMeterV2 {
     public String[] levelsOfBonusItems = new String[2];
     public String[] levelsOfSuggestedItems = new String[9];
 
+    Integer nTmpAlphaUC = null, nTmpAlphaLC = null, nTmpNumber = null;
+
     public void numberOfCharacters() {
         int multiplierLength = 4;
         countLength = password.length();
         score = password.length() * multiplierLength;
     }
 
-    public void countOfConsecutiveLettersUpperCased() {
-
-        Integer nTmpAlphaUC = null;
-        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-
-        for (int i = 0; i < arrPwd.length; i++) {
+    public void countOfConsecutiveLettersUpperCased(String[] arrPwd, int i) {
             if (arrPwd[i].matches("[A-Z]")) {
                 if (nTmpAlphaUC != null) {
                     if (nTmpAlphaUC + 1 == i) {
@@ -49,14 +46,9 @@ public class PasswordMeterV2 {
                 nTmpAlphaUC = i;
                 countAlphaUpperCase++;
             }
-        }
     }
 
-    public void countOfConsecutiveLettersLowerCased() {
-
-        Integer nTmpAlphaLC = null;
-        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-        for (int i = 0; i < arrPwd.length; i++) {
+    public void countOfConsecutiveLettersLowerCased(String[] arrPwd, int i) {
             if (arrPwd[i].matches("[a-z]")) {
                 if (nTmpAlphaLC != null) {
                     if (nTmpAlphaLC + 1 == i) {
@@ -66,15 +58,9 @@ public class PasswordMeterV2 {
                 nTmpAlphaLC = i;
                 countAlphaLowerCase++;
             }
-        }
     }
 
-    public void countOfConsecutiveNumbers() {
-
-        Integer nTmpNumber = null;
-        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-
-        for (int i = 0; i < arrPwd.length; i++) {
+    public void countOfConsecutiveNumbers(String[] arrPwd, int i) {
             if (arrPwd[i].matches("[0-9]")) {
                 if (i > 0 && i < arrPwd.length - 1) {
                     countMidChar++;
@@ -87,28 +73,20 @@ public class PasswordMeterV2 {
                 nTmpNumber = i;
                 countNumber++;
             }
-        }
     }
 
-    public void countOfSymbols() {
-
-        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-
-        for (int i = 0; i < arrPwd.length; i++) {
+    public void countOfSymbols(String[] arrPwd, int i) {
             if (arrPwd[i].matches("[^a-zA-Z0-9_]")) {
                 if (i > 0 && i < arrPwd.length - 1) {
                     countMidChar++;
                 }
                 countSymbol++;
             }
-        }
     }
 
-    public Double countOfRepeatedCharacters(double changedRepeatedChar) {
-
-
+    public Double countOfRepeatedCharacters() {
+        double changedRepeatedChar = 0;
         String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-
         for (int i = 0; i < arrPwd.length; i++) {
             var bCharExists = false;
             for (int j = 0; j < arrPwd.length; j++) {
@@ -125,32 +103,27 @@ public class PasswordMeterV2 {
                         Math.ceil(changedRepeatedChar / countUniqueCharacters) :
                         Math.ceil(changedRepeatedChar);
             }
-        }
 
+        }
         return changedRepeatedChar;
     }
 
 
     public String checkPassword(String candidate) {
         password = candidate;
-
-
-        Integer nTmpAlphaUC = null, nTmpAlphaLC = null, nTmpNumber = null;
-        double incrementDeductionOfRepeatedChars = 0;
-
-
         numberOfCharacters();
 
-
         String[] arrPwd = candidate.replaceAll("\\s+", "").split("\\s*");
+        for (int i = 0; i < arrPwd.length; i++) {
+            countOfConsecutiveLettersUpperCased(arrPwd, i);
+            countOfConsecutiveLettersLowerCased(arrPwd, i);
+            countOfConsecutiveNumbers(arrPwd, i);
+            countOfSymbols(arrPwd, i);
 
-        countOfConsecutiveLettersUpperCased();
-        countOfConsecutiveLettersLowerCased();
-        countOfConsecutiveNumbers();
-        countOfSymbols();
-        incrementDeductionOfRepeatedChars = countOfRepeatedCharacters(incrementDeductionOfRepeatedChars);
+        }
 
-
+        double incrementDeductionOfRepeatedChars = 0;
+        incrementDeductionOfRepeatedChars = countOfRepeatedCharacters();
 
         /* Check for sequential alpha string patterns (forward and reverse) */
         for (int i = 0; i < 23; i++) {
