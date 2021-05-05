@@ -103,6 +103,41 @@ public class PasswordMeterV2 {
         }
     }
 
+    public void checkSequentialLettersPattern() {
+        /* Check for sequential alpha string patterns (forward and reverse) */
+        for (int i = 0; i < 23; i++) {
+            String ALPHAS = "abcdefghijklmnopqrstuvwxyz";
+            String sFwd = ALPHAS.substring(i, i + 3);
+            String sRev = new StringBuilder(sFwd).reverse().toString();
+            if (password.toLowerCase().contains(sFwd) || password.toLowerCase().contains(sRev)) {
+                countSeqAlpha++;
+            }
+        }
+    }
+
+    public void checkSequentialNumericPattern() {
+        /* Check for sequential numeric string patterns (forward and reverse) */
+        for (int i = 0; i < 8; i++) {
+            String DIGITS = "01234567890";
+            String sFwd = DIGITS.substring(i, i + 3);
+            String sRev = new StringBuilder(sFwd).reverse().toString();
+            if (password.toLowerCase().contains(sFwd) || password.toLowerCase().contains(sRev)) {
+                countSeqNumber++;
+            }
+        }
+    }
+
+    public void checkSequentialSymbolPattern() {
+        /* Check for sequential symbol string patterns (forward and reverse) */
+        for (int i = 0; i < 8; i++) {
+            String SYMBOLS = ")!@#$%^&*()";
+            String sFwd = SYMBOLS.substring(i, i + 3);
+            String sRev = new StringBuilder(sFwd).reverse().toString();
+            if (password.toLowerCase().contains(sFwd) || password.toLowerCase().contains(sRev)) {
+                countSeqSymbol++;
+            }
+        }
+    }
 
     public String checkPassword(String candidate) {
         password = candidate;
@@ -117,35 +152,9 @@ public class PasswordMeterV2 {
             countOfRepeatedCharacters(arrPwd, i);
         }
 
-        /* Check for sequential alpha string patterns (forward and reverse) */
-        for (int i = 0; i < 23; i++) {
-            String ALPHAS = "abcdefghijklmnopqrstuvwxyz";
-            String sFwd = ALPHAS.substring(i, i + 3);
-            String sRev = new StringBuilder(sFwd).reverse().toString();
-            if (candidate.toLowerCase().contains(sFwd) || candidate.toLowerCase().contains(sRev)) {
-                countSeqAlpha++;
-            }
-        }
-
-        /* Check for sequential numeric string patterns (forward and reverse) */
-        for (int i = 0; i < 8; i++) {
-            String DIGITS = "01234567890";
-            String sFwd = DIGITS.substring(i, i + 3);
-            String sRev = new StringBuilder(sFwd).reverse().toString();
-            if (candidate.toLowerCase().contains(sFwd) || candidate.toLowerCase().contains(sRev)) {
-                countSeqNumber++;
-            }
-        }
-
-        /* Check for sequential symbol string patterns (forward and reverse) */
-        for (int i = 0; i < 8; i++) {
-            String SYMBOLS = ")!@#$%^&*()";
-            String sFwd = SYMBOLS.substring(i, i + 3);
-            String sRev = new StringBuilder(sFwd).reverse().toString();
-            if (candidate.toLowerCase().contains(sFwd) || candidate.toLowerCase().contains(sRev)) {
-                countSeqSymbol++;
-            }
-        }
+        checkSequentialLettersPattern();
+        checkSequentialNumericPattern();
+        checkSequentialSymbolPattern();
 
         /* Modify overall score value based on usage vs requirements */
 
