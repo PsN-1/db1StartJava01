@@ -139,8 +139,47 @@ public class PasswordMeterV2 {
         }
     }
 
+    public void calculateBonusLetterUpperCase() {
+        if (countAlphaUpperCase > 0 && countAlphaUpperCase < countLength) {
+            score = score + (countLength - countAlphaUpperCase) * 2;
+            bonusAlphaUpperCase = (countLength - countAlphaUpperCase) * 2;
+        }
+    }
+
+    public void calculateBonusLetterLowerCase() {
+        if (countAlphaLowerCase > 0 && countAlphaLowerCase < countLength) {
+            score = score + (countLength - countAlphaLowerCase) * 2;
+            bonusAlphaLowerCase = (countLength - countAlphaLowerCase) * 2;
+        }
+    }
+
+    public void calculateBonusNumber() {
+        if (countNumber > 0 && countNumber < countLength) {
+            int multiplierNumber = 4;
+            score = score + countNumber * multiplierNumber;
+            bonusNumber = countNumber * multiplierNumber;
+        }
+    }
+
+    public void calculateBonusSymbol() {
+        if (countSymbol > 0) {
+            int multiplierSymbol = 6;
+            score = score + countSymbol * multiplierSymbol;
+            bonusSymbol = countSymbol * multiplierSymbol;
+        }
+    }
+
+    public void calculateBonusMidCharacter() {
+        if (countMidChar > 0) {
+            int multiplierMidChar = 2;
+            score = score + countMidChar * multiplierMidChar;
+            bonusMidChar = countMidChar * multiplierMidChar;
+        }
+    }
+
     public String checkPassword(String candidate) {
         password = candidate;
+
         numberOfCharacters();
 
         String[] arrPwd = candidate.replaceAll("\\s+", "").split("\\s*");
@@ -157,32 +196,15 @@ public class PasswordMeterV2 {
         checkSequentialSymbolPattern();
 
         /* Modify overall score value based on usage vs requirements */
-
         /* General point assignment */
         bonusLength = score;
-        if (countAlphaUpperCase > 0 && countAlphaUpperCase < countLength) {
-            score = score + (countLength - countAlphaUpperCase) * 2;
-            bonusAlphaUpperCase = (countLength - countAlphaUpperCase) * 2;
-        }
-        if (countAlphaLowerCase > 0 && countAlphaLowerCase < countLength) {
-            score = score + (countLength - countAlphaLowerCase) * 2;
-            bonusAlphaLowerCase = (countLength - countAlphaLowerCase) * 2;
-        }
-        if (countNumber > 0 && countNumber < countLength) {
-            int multiplierNumber = 4;
-            score = score + countNumber * multiplierNumber;
-            bonusNumber = countNumber * multiplierNumber;
-        }
-        if (countSymbol > 0) {
-            int multiplierSymbol = 6;
-            score = score + countSymbol * multiplierSymbol;
-            bonusSymbol = countSymbol * multiplierSymbol;
-        }
-        if (countMidChar > 0) {
-            int multiplierMidChar = 2;
-            score = score + countMidChar * multiplierMidChar;
-            bonusMidChar = countMidChar * multiplierMidChar;
-        }
+
+        // Calculate bonus
+        calculateBonusLetterUpperCase();
+        calculateBonusLetterLowerCase();
+        calculateBonusNumber();
+        calculateBonusSymbol();
+        calculateBonusMidCharacter();
 
         /* Point deductions for poor practices */
         if ((countAlphaLowerCase > 0 || countAlphaUpperCase > 0) && countSymbol == 0 && countNumber == 0) {  // Only Letters
