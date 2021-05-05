@@ -1,6 +1,6 @@
 package passwordMeter;
 
-public class PasswordMeterCopy {
+public class PasswordMeterV2 {
 
     public int score;
     public String password;
@@ -36,7 +36,100 @@ public class PasswordMeterCopy {
 
     public void countOfConsecutiveLettersUpperCased() {
 
+        Integer nTmpAlphaUC = null;
+        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
+
+        for (int i = 0; i < arrPwd.length; i++) {
+            if (arrPwd[i].matches("[A-Z]")) {
+                if (nTmpAlphaUC != null) {
+                    if (nTmpAlphaUC + 1 == i) {
+                        countConsecutiveAlphaUC++;
+                    }
+                }
+                nTmpAlphaUC = i;
+                countAlphaUpperCase++;
+            }
+        }
     }
+
+    public void countOfConsecutiveLettersLowerCased() {
+
+        Integer nTmpAlphaLC = null;
+        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
+        for (int i = 0; i < arrPwd.length; i++) {
+            if (arrPwd[i].matches("[a-z]")) {
+                if (nTmpAlphaLC != null) {
+                    if (nTmpAlphaLC + 1 == i) {
+                        countConsecutiveAlphaLC++;
+                    }
+                }
+                nTmpAlphaLC = i;
+                countAlphaLowerCase++;
+            }
+        }
+    }
+
+    public void countOfConsecutiveNumbers() {
+
+        Integer nTmpNumber = null;
+        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
+
+        for (int i = 0; i < arrPwd.length; i++) {
+            if (arrPwd[i].matches("[0-9]")) {
+                if (i > 0 && i < arrPwd.length - 1) {
+                    countMidChar++;
+                }
+                if (nTmpNumber != null) {
+                    if (nTmpNumber + 1 == i) {
+                        countConsecutiveNumber++;
+                    }
+                }
+                nTmpNumber = i;
+                countNumber++;
+            }
+        }
+    }
+
+    public void countOfSymbols() {
+
+        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
+
+        for (int i = 0; i < arrPwd.length; i++) {
+            if (arrPwd[i].matches("[^a-zA-Z0-9_]")) {
+                if (i > 0 && i < arrPwd.length - 1) {
+                    countMidChar++;
+                }
+                countSymbol++;
+            }
+        }
+    }
+
+    public Double countOfRepeatedCharacters(double changedRepeatedChar) {
+
+
+        String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
+
+        for (int i = 0; i < arrPwd.length; i++) {
+            var bCharExists = false;
+            for (int j = 0; j < arrPwd.length; j++) {
+                if (arrPwd[i].equals(arrPwd[j]) && i != j) { /* repeat character exists */
+                    bCharExists = true;
+
+                    changedRepeatedChar += Math.abs(arrPwd.length / (j - i));
+                }
+            }
+            if (bCharExists) {
+                countRepChar++;
+                int countUniqueCharacters = arrPwd.length - countRepChar;
+                changedRepeatedChar = countUniqueCharacters != 0 ?
+                        Math.ceil(changedRepeatedChar / countUniqueCharacters) :
+                        Math.ceil(changedRepeatedChar);
+            }
+        }
+
+        return changedRepeatedChar;
+    }
+
 
     public String checkPassword(String candidate) {
         password = candidate;
@@ -51,58 +144,13 @@ public class PasswordMeterCopy {
 
         String[] arrPwd = candidate.replaceAll("\\s+", "").split("\\s*");
 
-        for (int i = 0; i < arrPwd.length; i++) {
-            if (arrPwd[i].matches("[A-Z]")) {
-                if (nTmpAlphaUC != null) {
-                    if (nTmpAlphaUC + 1 == i) {
-                        countConsecutiveAlphaUC++;
-                    }
-                }
-                nTmpAlphaUC = i;
-                countAlphaUpperCase++;
-            } else if (arrPwd[i].matches("[a-z]")) {
-                if (nTmpAlphaLC != null) {
-                    if (nTmpAlphaLC + 1 == i) {
-                        countConsecutiveAlphaLC++;
-                    }
-                }
-                nTmpAlphaLC = i;
-                countAlphaLowerCase++;
-            } else if (arrPwd[i].matches("[0-9]")) {
-                if (i > 0 && i < arrPwd.length - 1) {
-                    countMidChar++;
-                }
-                if (nTmpNumber != null) {
-                    if (nTmpNumber + 1 == i) {
-                        countConsecutiveNumber++;
-                    }
-                }
-                nTmpNumber = i;
-                countNumber++;
-            } else if (arrPwd[i].matches("[^a-zA-Z0-9_]")) {
-                if (i > 0 && i < arrPwd.length - 1) {
-                    countMidChar++;
-                }
-                countSymbol++;
-            }
+        countOfConsecutiveLettersUpperCased();
+        countOfConsecutiveLettersLowerCased();
+        countOfConsecutiveNumbers();
+        countOfSymbols();
+        incrementDeductionOfRepeatedChars = countOfRepeatedCharacters(incrementDeductionOfRepeatedChars);
 
-            /* Internal loop through password to check for repeat characters */
-            var bCharExists = false;
-            for (int j = 0; j < arrPwd.length; j++) {
-                if (arrPwd[i].equals(arrPwd[j]) && i != j) { /* repeat character exists */
-                    bCharExists = true;
 
-                    incrementDeductionOfRepeatedChars += Math.abs(arrPwd.length / (j - i));
-                }
-            }
-            if (bCharExists) {
-                countRepChar++;
-                int countUniqueCharacters = arrPwd.length - countRepChar;
-                incrementDeductionOfRepeatedChars = countUniqueCharacters != 0 ?
-                        Math.ceil(incrementDeductionOfRepeatedChars / countUniqueCharacters) :
-                        Math.ceil(incrementDeductionOfRepeatedChars);
-            }
-        }
 
         /* Check for sequential alpha string patterns (forward and reverse) */
         for (int i = 0; i < 23; i++) {
