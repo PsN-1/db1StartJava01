@@ -177,36 +177,7 @@ public class PasswordMeterV2 {
         }
     }
 
-    public String checkPassword(String candidate) {
-        password = candidate;
-
-        numberOfCharacters();
-
-        String[] arrPwd = candidate.replaceAll("\\s+", "").split("\\s*");
-        for (int i = 0; i < arrPwd.length; i++) {
-            countOfConsecutiveLettersUpperCased(arrPwd, i);
-            countOfConsecutiveLettersLowerCased(arrPwd, i);
-            countOfConsecutiveNumbers(arrPwd, i);
-            countOfSymbols(arrPwd, i);
-            countOfRepeatedCharacters(arrPwd, i);
-        }
-
-        checkSequentialLettersPattern();
-        checkSequentialNumericPattern();
-        checkSequentialSymbolPattern();
-
-        /* Modify overall score value based on usage vs requirements */
-        /* General point assignment */
-        bonusLength = score;
-
-        // Calculate bonus
-        calculateBonusLetterUpperCase();
-        calculateBonusLetterLowerCase();
-        calculateBonusNumber();
-        calculateBonusSymbol();
-        calculateBonusMidCharacter();
-
-        /* Point deductions for poor practices */
+    public void calculateDeductions() {
         if ((countAlphaLowerCase > 0 || countAlphaUpperCase > 0) && countSymbol == 0 && countNumber == 0) {  // Only Letters
             score = score - countLength;
             countAlphasOnly = countLength;
@@ -251,6 +222,59 @@ public class PasswordMeterV2 {
             score = score - countSeqSymbol * multiplierSeqSymbol;
             bonusSeqSymbol = countSeqSymbol * multiplierSeqSymbol;
         }
+    }
+
+    public void calculatePasswordComplexity() {
+        if (score > 100) {
+            score = 100;
+        } else if (score < 0) {
+            score = 0;
+        }
+
+        if (score < 20) {
+            sComplexity = "Very Weak";
+        } else if (score < 40) {
+            sComplexity = "Weak";
+        } else if (score < 60) {
+            sComplexity = "Good";
+        } else if (score < 80) {
+            sComplexity = "Strong";
+        } else {
+            sComplexity = "Very Strong";
+        }
+    }
+
+    public String checkPassword(String candidate) {
+        password = candidate;
+
+        numberOfCharacters();
+
+        String[] arrPwd = candidate.replaceAll("\\s+", "").split("\\s*");
+        for (int i = 0; i < arrPwd.length; i++) {
+            countOfConsecutiveLettersUpperCased(arrPwd, i);
+            countOfConsecutiveLettersLowerCased(arrPwd, i);
+            countOfConsecutiveNumbers(arrPwd, i);
+            countOfSymbols(arrPwd, i);
+            countOfRepeatedCharacters(arrPwd, i);
+        }
+
+        checkSequentialLettersPattern();
+        checkSequentialNumericPattern();
+        checkSequentialSymbolPattern();
+
+        /* Modify overall score value based on usage vs requirements */
+        /* General point assignment */
+        bonusLength = score;
+
+        // Calculate bonus
+        calculateBonusLetterUpperCase();
+        calculateBonusLetterLowerCase();
+        calculateBonusNumber();
+        calculateBonusSymbol();
+        calculateBonusMidCharacter();
+
+        /* Point deductions for poor practices */
+        calculateDeductions();
 
         /* Determine if mandatory requirements have been met and set image indicators accordingly */
         int[] arrChars = {countLength, countAlphaUpperCase, countAlphaLowerCase, countNumber, countSymbol};
@@ -301,23 +325,8 @@ public class PasswordMeterV2 {
         }
 
         /* Determine complexity based on overall score */
-        if (score > 100) {
-            score = 100;
-        } else if (score < 0) {
-            score = 0;
-        }
+        calculatePasswordComplexity();
 
-        if (score < 20) {
-            sComplexity = "Very Weak";
-        } else if (score < 40) {
-            sComplexity = "Weak";
-        } else if (score < 60) {
-            sComplexity = "Good";
-        } else if (score < 80) {
-            sComplexity = "Strong";
-        } else {
-            sComplexity = "Very Strong";
-        }
         return candidate;
     }
 
