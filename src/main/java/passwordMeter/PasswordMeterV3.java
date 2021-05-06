@@ -1,37 +1,35 @@
 package passwordMeter;
 
 public class PasswordMeterV3 {
-    public static void main(String[] args) {
-        var first = new NumberOfCharacters();
-        first.calculateCount();
-        first.calculateBonus();
+    String password;
+    int score;
+
+    public PasswordMeterV3(String password) {
+        this.password = password;
     }
+
+    int calculateScore() { return score; }
 }
 
 abstract class RequirementProperties {
     String requirementsLevel;
-    String type;
-    int count, bonus;
+    String typeRate;
+    String rate;
 
-    public int calculateCount() {
-        return count;
-    }
-    public int calculateBonus() {
-        return bonus;
-    }
+    abstract int calculateCount(String password);
+    abstract int calculateBonus(String password);
 }
 
 // additions
 class NumberOfCharacters extends RequirementProperties{
-    public String password;
 
     @Override
-    public int calculateCount() {
+    public int calculateCount(String password) {
         return password.length();
     }
 
     @Override
-    public int calculateBonus() {
+    public int calculateBonus(String password) {
         int multiplierLength = 4;
         return password.length() * multiplierLength;
     }
