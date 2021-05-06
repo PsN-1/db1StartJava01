@@ -8,17 +8,25 @@ public class PasswordMeterV3 {
         this.password = password;
     }
 
-    int calculateScore() { return score; }
+    int calculateScore() {
+        return score;
+    }   
+
+    String calculateComplexityLevel(String password) {
+     return "Too Short";
+    }
 }
 
 abstract class RequirementProperties {
-    String requirementsLevel;
+    String requirementLevel;
     String typeRate;
     String rate;
 
     abstract int calculateCount(String password);
     abstract int calculateBonus(String password);
-    abstract String calculateRequirementsLevel(String password);
+    abstract String calculateRequirementLevel(String password);
+
+
 }
 
 // additions
@@ -36,19 +44,18 @@ class NumberOfCharacters extends RequirementProperties{
     }
 
     @Override
-    String calculateRequirementsLevel(String password) {
+    String calculateRequirementLevel(String password) {
         int minimumValue = 8;
         int passwordLength = password.length();
 
         if (passwordLength == minimumValue) {
-            requirementsLevel = "sufficient";
-        } else if (passwordLength > passwordLength) {
-            requirementsLevel = "exceptional";
+            requirementLevel = "sufficient";
+        } else if (passwordLength > minimumValue) {
+            requirementLevel = "exceptional";
         } else {
-            requirementsLevel = "failure";
+            requirementLevel = "failure";
         }
-
-        return requirementsLevel;
+        return requirementLevel;
     }
 }
 
