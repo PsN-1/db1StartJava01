@@ -15,7 +15,7 @@ class MiddleNumbersOrSymbolsTest {
     }
 
     @Test
-    void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementExceptional() {
+    void shouldReturnExpectedValuesWithPasswordWithMiddleNumberRequirementExceptional() {
         var result = new MiddleNumbersOrSymbols("12@asDF!");
         assertEquals(2, result.getCount());
         assertEquals(4, result.getBonus());
@@ -24,7 +24,7 @@ class MiddleNumbersOrSymbolsTest {
     }
 
     @Test
-    void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementSufficient() {
+    void shouldReturnExpectedValuesWithPasswordWithMiddleNumberRequirementSufficient() {
         var result = new MiddleNumbersOrSymbols("12asDF!");
         assertEquals(1, result.getCount());
         assertEquals(2, result.getBonus());

@@ -15,7 +15,7 @@ class SymbolsTest {
     }
 
     @Test
-    void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementExceptional() {
+    void shouldReturnExpectedValuesWithPasswordWithSymbolsRequirementExceptional() {
         var result = new Symbols("1@2as$DF");
         assertEquals(2, result.getCount());
         assertEquals(12, result.getBonus());
@@ -24,7 +24,7 @@ class SymbolsTest {
     }
 
     @Test
-    void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementSufficient() {
+    void shouldReturnExpectedValuesWithPasswordWithSymbolsRequirementSufficient() {
         var result = new Symbols("12aS@df");
         assertEquals(1, result.getCount());
         assertEquals(6, result.getBonus());

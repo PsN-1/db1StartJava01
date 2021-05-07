@@ -15,7 +15,7 @@ class NumbersTest {
     }
 
     @Test
-    void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementExceptional() {
+    void shouldReturnExpectedValuesWithPasswordWithNumbersRequirementExceptional() {
         var result = new Numbers("123asDF");
         assertEquals(3, result.getCount());
         assertEquals(12, result.getBonus());
@@ -24,7 +24,7 @@ class NumbersTest {
     }
 
     @Test
-    void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementSufficient() {
+    void shouldReturnExpectedValuesWithPasswordWithNumbersRequirementSufficient() {
         var result = new Numbers("1aSdf");
         assertEquals(1, result.getCount());
         assertEquals(4, result.getBonus());
