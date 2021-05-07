@@ -17,7 +17,6 @@ public class PasswordMeterV3 {
     }
 }
 
-class Symbols {}
 class MiddleNumbersOrSymbols {}
 class Requirements {}
 
@@ -31,6 +30,5 @@ class ConsecutiveNumbers {}
 class SequentialLetters {}
 class SequentialNumbers {}
 class SequentialSymbols {}
-
 
 
