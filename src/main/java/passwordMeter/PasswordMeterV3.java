@@ -17,7 +17,6 @@ public class PasswordMeterV3 {
     }
 }
 
-class Numbers {}
 class Symbols {}
 class MiddleNumbersOrSymbols {}
 class Requirements {}

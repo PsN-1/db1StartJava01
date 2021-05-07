@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UppercaseLettersTest {
-
+class NumbersTest {
     @Test
     void shouldReturnZeroValuesWhenTestedWithEmptyPassword() {
-        var result = new UppercaseLetters("");
+        var result = new Numbers("");
         assertEquals(0, result.getCount());
         assertEquals(0, result.getBonus());
         assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
@@ -17,18 +16,18 @@ class UppercaseLettersTest {
 
     @Test
     void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementExceptional() {
-        var result = new UppercaseLetters("12asDF");
-        assertEquals(2, result.getCount());
-        assertEquals(8, result.getBonus());
+        var result = new Numbers("123asDF");
+        assertEquals(3, result.getCount());
+        assertEquals(12, result.getBonus());
         assertEquals(RequirementLevel.EXCEPTIONAL, result.getRequirementLevel());
         assertEquals(OperationType.ADDITTIONS, result.getOperationType());
     }
 
     @Test
     void shouldReturnExpectedValuesWithPasswordWithUpperCaseLettersRequirementSufficient() {
-        var result = new UppercaseLetters("12aSdf");
+        var result = new Numbers("1aSdf");
         assertEquals(1, result.getCount());
-        assertEquals(10, result.getBonus());
+        assertEquals(4, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
         assertEquals(OperationType.ADDITTIONS, result.getOperationType());
     }

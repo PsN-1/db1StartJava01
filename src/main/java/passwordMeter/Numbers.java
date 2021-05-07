@@ -1,53 +1,52 @@
 package passwordMeter;
 
-public class UppercaseLetters extends RequirementProperty {
+public class Numbers extends RequirementProperty {
     private RequirementLevel reqLevel;
-    private int countAlphaUpperCase, bonusAlphaUpperCase;
     private int countLength = password.length();
+    private int countNumber, bonusNumber;
 
-    public UppercaseLetters(String password) {
+    public Numbers(String password) {
         super(password);
-        calculateCountOfUpperCaseLetter(password);
-        calculateBonusLetterUpperCase();
+        calculateCountOfNumbers(password);
+        calculateBonusNumber(password);
         calculateRequirementLevel();
     }
 
-    public void calculateCountOfUpperCaseLetter(String password) {
+    public void calculateCountOfNumbers(String password) {
         String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-
         for (int i = 0; i < arrPwd.length; i++) {
-            if (arrPwd[i].matches("[A-Z]")) {
-                countAlphaUpperCase++;
+            if (arrPwd[i].matches("[0-9]")) {
+                countNumber++;
             }
         }
     }
 
-    public void calculateBonusLetterUpperCase() {
-        if (countAlphaUpperCase > 0 && countAlphaUpperCase < countLength) {
-//            score = score + (countLength - countAlphaUpperCase) * 2;
-            bonusAlphaUpperCase = (countLength - countAlphaUpperCase) * 2;
+    public void calculateBonusNumber(String password) {
+        if (countNumber > 0 && countNumber < countLength) {
+            int multiplierNumber = 4;
+//            score = score + countNumber * multiplierNumber;
+            bonusNumber = countNumber * multiplierNumber;
         }
     }
 
     public void calculateRequirementLevel() {
-        if (countAlphaUpperCase <= 0 ) {
+        if (countNumber <= 0 ) {
             reqLevel = RequirementLevel.FAILURE;
-        } else if (countAlphaUpperCase == 1) {
+        } else if (countNumber == 1) {
             reqLevel = RequirementLevel.SUFFICIENT;
         } else {
             reqLevel = RequirementLevel.EXCEPTIONAL;
         }
     }
 
-
     @Override
     int getCount() {
-        return countAlphaUpperCase;
+        return countNumber;
     }
 
     @Override
     int getBonus() {
-        return bonusAlphaUpperCase;
+        return bonusNumber;
     }
 
     @Override
