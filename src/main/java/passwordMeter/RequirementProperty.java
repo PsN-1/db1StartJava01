@@ -1,9 +1,9 @@
 package passwordMeter;
 
-abstract class RequirementProperties {
+abstract class RequirementProperty {
     protected String password;
 
-    public RequirementProperties(String password) {
+    public RequirementProperty(String password) {
         this.password = password;
     }
 

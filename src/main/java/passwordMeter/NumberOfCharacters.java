@@ -1,7 +1,7 @@
 package passwordMeter;
 
 // additions
-public class NumberOfCharacters extends RequirementProperties {
+public class NumberOfCharacters extends RequirementProperty {
     private int count;
     private int bonus;
     private RequirementLevel reqLevel;

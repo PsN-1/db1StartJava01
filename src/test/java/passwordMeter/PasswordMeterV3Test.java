@@ -7,24 +7,31 @@ import static org.junit.jupiter.api.Assertions.*;
 class PasswordMeterV3Test {
 
     @Test
-    void main() {
-        var expectedCount = 8;
-        var expectedBonus = 32;
-        var expectedLevel = "sufficient";
 
-        var password = "12345678";
-        var meter = new NumberOfCharacters();
-//        System.out.println(meter2.calculateCount());
-        assertEquals(expectedCount, meter.calculateCount(password));
-        assertEquals(expectedBonus, meter.calculateBonus(password));
-        assertEquals(expectedLevel, meter.calculateRequirementLevel(password));
-
-        password = "1234567";
-        expectedLevel = "failure";
-        assertEquals(expectedLevel, meter.calculateRequirementLevel(password));
-
-        password = "123456789";
-        expectedLevel = "exceptional";
-        assertEquals(expectedLevel, meter.calculateRequirementLevel(password));
+    void shouldReturnZeroValuesWhenTestedWithEmptyPassword() {
+        var result = new NumberOfCharacters("");
+        assertEquals(0, result.getCount());
+        assertEquals(0, result.getBonus());
+        assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
+        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
     }
+
+    @Test
+    void shouldReturnExpectedValuesWithPasswordWithCharacters() {
+        var result = new NumberOfCharacters("123456");
+        assertEquals(6, result.getCount());
+        assertEquals(24, result.getBonus());
+        assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
+        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+    }
+
+    @Test
+    void shouldReturnExpectedValuesAndRequirementsWithPasswordWithCharacters() {
+        var result = new NumberOfCharacters("12345678");
+        assertEquals(8, result.getCount());
+        assertEquals(32, result.getBonus());
+        assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
+        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+    }
+
 }
