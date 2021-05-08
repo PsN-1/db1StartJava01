@@ -17,19 +17,27 @@ class NumberOfCharactersTest {
 
     @Test
     void shouldReturnExpectedValuesWithPasswordWithCharacters() {
-        var result = new NumberOfCharacters("123456");
-        assertEquals(6, result.getCount());
-        assertEquals(24, result.getBonus());
+        var result = new NumberOfCharacters("1234567");
+        assertEquals(7, result.getCount());
+        assertEquals(28, result.getBonus());
         assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
         assertEquals(OperationType.ADDITTIONS, result.getOperationType());
     }
 
     @Test
-    void shouldReturnExpectedValuesAndRequirementsWithPasswordWithCharacters() {
+    void shouldReturnExpectedValuesWithPasswordWithCharactersAndRequirementSufficient() {
         var result = new NumberOfCharacters("12345678");
         assertEquals(8, result.getCount());
         assertEquals(32, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
+        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+    }
+    @Test
+    void shouldReturnExpectedValuesWithPasswordWithCharactersAndRequirementExceptional() {
+        var result = new NumberOfCharacters("123456789");
+        assertEquals(9, result.getCount());
+        assertEquals(36, result.getBonus());
+        assertEquals(RequirementLevel.EXCEPTIONAL, result.getRequirementLevel());
         assertEquals(OperationType.ADDITTIONS, result.getOperationType());
     }
 
