@@ -9,15 +9,24 @@ public class LettersOnly extends RequirementProperty implements DeductionBuilder
 
     public LettersOnly(String password) {
         super(password);
-        calculateCountOfLettersOnly(password);
+        calculateCountAndBonusOfLettersOnly(password);
+        calculateRequirementLevel();
     }
 
-    public void calculateCountOfLettersOnly(String password) {
+    public void calculateCountAndBonusOfLettersOnly(String password) {
         Map<String, Integer> resultsArr = new HashMap<String, Integer>();
         resultsArr = getAllValues(password);
         if ((resultsArr.get("countAlphaLowerCase") > 0 || resultsArr.get("countAlphaUpperCase") > 0) && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") == 0) {
             countLettersOnly = resultsArr.get("countLength");
             bonusLettersOnly = resultsArr.get("countLength");
+        }
+    }
+
+    public void calculateRequirementLevel() {
+        if (countLettersOnly > 0) {
+            reqLevel = RequirementLevel.WARNING;
+        } else {
+            reqLevel = RequirementLevel.SUFFICIENT;
         }
     }
 
@@ -38,6 +47,6 @@ public class LettersOnly extends RequirementProperty implements DeductionBuilder
 
     @Override
     OperationType getOperationType() {
-        return null;
+        return OperationType.DEDUCTIONS;
     }
 }
