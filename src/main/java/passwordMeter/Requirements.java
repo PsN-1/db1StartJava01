@@ -5,7 +5,7 @@ import java.util.ArrayList;
 // additions
 public class Requirements extends RequirementProperty implements RequirementBuilder{
     private RequirementLevel reqLevel;
-    public int bonusRequirements, countRequirements;
+    private int bonusRequirements, countRequirements;
 
     public Requirements(String password) {
         super(password);
