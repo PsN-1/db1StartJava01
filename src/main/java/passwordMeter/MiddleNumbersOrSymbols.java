@@ -16,14 +16,7 @@ public class MiddleNumbersOrSymbols extends RequirementProperty{
 
         for (int i = 0; i < arrPwd.length; i++) {
 
-            if (arrPwd[i].matches("[0-9]")) {
-                if (i > 0 && i < arrPwd.length - 1) {
-                    countMidChar++;
-                }
-
-            }
-            // try to unite both 'if' with 'or'
-            if (arrPwd[i].matches("[^a-zA-Z0-9_]")) {
+            if ((arrPwd[i].matches("[0-9]")) || (arrPwd[i].matches("[^a-zA-Z0-9_]"))) {
                 if (i > 0 && i < arrPwd.length - 1) {
                     countMidChar++;
                 }

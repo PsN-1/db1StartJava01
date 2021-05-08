@@ -39,7 +39,6 @@ public class UppercaseLetters extends RequirementProperty {
         }
     }
 
-
     @Override
     int getCount() {
         return countAlphaUpperCase;

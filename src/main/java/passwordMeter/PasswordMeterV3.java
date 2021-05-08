@@ -8,6 +8,11 @@ public class PasswordMeterV3 {
         this.password = password;
     }
 
+    public static void main(String[] args){
+        var test = new NumberOfCharacters("12345");
+        var test2 = test.getCount();
+    }
+
     int calculateScore() {
         return score;
     }
@@ -16,8 +21,6 @@ public class PasswordMeterV3 {
      return "Too Short";
     }
 }
-
-class Requirements {}
 
 // deductions
 class LettersOnly {}
