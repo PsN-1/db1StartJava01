@@ -4,21 +4,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LettersOnlyTest {
+class NumbersOnlyTest {
 
     @Test
-    void shouldReturnZeroLettersOnlyWithRequirementSufficient() {
-        var result = new LettersOnly("123456");
+    void shouldReturnZeroNumbersOnlyWithRequirementSufficient() {
+        var result = new NumbersOnly("asdasS");
         assertEquals(0, result.getCount());
         assertEquals(0, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
     }
     @Test
-    void shouldReturnDeductionLettersOnlyWithRequirementWarning() {
-        var result = new LettersOnly("asdasS");
+    void shouldReturnDeductionNumberOnlyWithRequirementWarning() {
+        var result = new NumbersOnly("123456");
         assertEquals(6, result.getCount());
         assertEquals(6, result.getBonus());
         assertEquals(RequirementLevel.WARNING, result.getRequirementLevel());
     }
-
 }

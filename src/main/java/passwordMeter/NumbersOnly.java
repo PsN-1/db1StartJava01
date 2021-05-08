@@ -3,27 +3,27 @@ package passwordMeter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LettersOnly extends RequirementProperty implements DeductionBuilder{
+public class NumbersOnly extends  RequirementProperty implements DeductionBuilder{
     private RequirementLevel reqLevel;
-    private int countLettersOnly, bonusLettersOnly;
+    private int countOfNumbersOnly, bonusOfNumbersOnly;
 
-    public LettersOnly(String password) {
+    public NumbersOnly(String password) {
         super(password);
-        calculateCountAndBonusOfLettersOnly(password);
+        calculateCountAndBonusOfNumbersOnly(password);
         calculateRequirementLevel();
     }
 
-    public void calculateCountAndBonusOfLettersOnly(String password) {
+    public void calculateCountAndBonusOfNumbersOnly(String password){
         Map<String, Integer> resultsArr = new HashMap<String, Integer>();
         resultsArr = getAllValues(password);
-        if ((resultsArr.get("countAlphaLowerCase") > 0 || resultsArr.get("countAlphaUpperCase") > 0) && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") == 0) {
-            countLettersOnly = resultsArr.get("countLength");
-            bonusLettersOnly = resultsArr.get("countLength");
+        if( resultsArr.get("countAlphaLowerCase") == 0 && resultsArr.get("countAlphaUpperCase") == 0 && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") > 0) {
+            countOfNumbersOnly = resultsArr.get("countLength");
+            bonusOfNumbersOnly = resultsArr.get("countLength");
         }
     }
 
     public void calculateRequirementLevel() {
-        if (countLettersOnly > 0) {
+        if (countOfNumbersOnly > 0) {
             reqLevel = RequirementLevel.WARNING;
         } else {
             reqLevel = RequirementLevel.SUFFICIENT;
@@ -32,12 +32,12 @@ public class LettersOnly extends RequirementProperty implements DeductionBuilder
 
     @Override
     int getCount() {
-        return countLettersOnly;
+        return countOfNumbersOnly;
     }
 
     @Override
     int getBonus() {
-        return bonusLettersOnly;
+        return bonusOfNumbersOnly;
     }
 
     @Override
