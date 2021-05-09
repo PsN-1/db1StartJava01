@@ -14,11 +14,19 @@ public class PasswordMeterV3 {
     int bonusRequirements, countRequirements;
 
     int bonusAlphasOnly, countAlphasOnly;
-
+    int countNumbersOnly, bonusNumbersOnly;
+    int countRepChar, bonusRepChar;
+    int countConsecutiveAlphaUC, bonusConsecutiveAlphaUC;
+    int countConsecutiveAlphaLC, bonusConsecutiveAlphaLC;
+    int countConsecutiveNumber, bonusConsecutiveNumber;
+    int countSeqAlpha, bonusSeqAlpha;
+    int countSeqNumber, bonusSeqNumber;
+    int countSeqSymbol, bonusSeqSymbol;
 
     public PasswordMeterV3(String password) {
         this.password = password;
 
+        // Additions
         countLength = new NumberOfCharacters(password).getCount();
         bonusLength = new NumberOfCharacters(password).getBonus();
 
@@ -40,9 +48,33 @@ public class PasswordMeterV3 {
         countRequirements = new Requirements(password).getCount();
         bonusRequirements = new Requirements(password).getBonus();
 
-        bonusAlphasOnly = new LettersOnly(password).getCount();
-        countAlphasOnly = new LettersOnly(password).getBonus();
+        // Deductions
+        countAlphasOnly = new LettersOnly(password).getCount();
+        bonusAlphasOnly = new LettersOnly(password).getBonus();
 
+        countNumbersOnly = new NumbersOnly(password).getCount();
+        bonusNumbersOnly = new NumbersOnly(password).getBonus();
+
+        countRepChar = new RepeatCharacters(password).getCount();
+        bonusRepChar = new RepeatCharacters(password).getBonus();
+
+        countConsecutiveAlphaUC = new ConsecutiveUppercaseLetters(password).getCount();
+        bonusConsecutiveAlphaUC = new ConsecutiveUppercaseLetters(password).getBonus();
+
+        countConsecutiveAlphaLC = new ConsecutiveLowercaseLetters(password).getCount();
+        bonusConsecutiveAlphaLC = new ConsecutiveLowercaseLetters(password).getBonus();
+
+        countConsecutiveNumber = new ConsecutiveNumbers(password).getCount();
+        bonusConsecutiveNumber = new ConsecutiveNumbers(password).getBonus();
+
+        countSeqAlpha = new SequentialLetters(password).getCount();
+        bonusSeqAlpha = new SequentialLetters(password).getBonus();
+
+        countSeqNumber = new SequentialNumbers(password).getCount();
+        bonusSeqNumber = new SequentialNumbers(password).getBonus();
+
+        countSeqSymbol = new SequentialSymbols(password).getCount();
+        bonusSeqSymbol = new SequentialSymbols(password).getBonus();
     }
 
     @Override
@@ -61,15 +93,15 @@ public class PasswordMeterV3 {
                 + "\n[C: " + countRequirements + " | B: " + bonusRequirements + "] Requirements"
 
                 + "\nDeductions"
-                + "\n[C: " + countAlphasOnly + " | B: " + bonusAlphasOnly + "] Letters Only";
-//                + "\n[C: " + countNumbersOnly + " | B: " + bonusNumbersOnly + "] Numbers Only"
-//                + "\n[C: " + countRepChar + " | B: " + bonusRepChar + "] Repeat Characters (Case Insensitive)"
-//                + "\n[C: " + countConsecutiveAlphaUC + " | B: " + bonusConsecutiveAlphaUC + "] Consecutive Uppercase Letters"
-//                + "\n[C: " + countConsecutiveAlphaLC + " | B: " + bonusConsecutiveAlphaLC + "] Consecutive Lowercase Letters"
-//                + "\n[C: " + countConsecutiveNumber + " | B: " + bonusConsecutiveNumber + "] Consecutive Numbers"
-//                + "\n[C: " + countSeqAlpha + " | B: " + bonusSeqAlpha + "] Sequential Letters"
-//                + "\n[C: " + countSeqNumber + " | B: " + bonusSeqNumber + "] Sequential Numbers"
-//                + "\n[C: " + countSeqSymbol + " | B: " + bonusSeqSymbol + "] Sequential Symbols";
+                + "\n[C: " + countAlphasOnly + " | B: " + bonusAlphasOnly + "] Letters Only"
+                + "\n[C: " + countNumbersOnly + " | B: " + bonusNumbersOnly + "] Numbers Only"
+                + "\n[C: " + countRepChar + " | B: " + bonusRepChar + "] Repeat Characters (Case Insensitive)"
+                + "\n[C: " + countConsecutiveAlphaUC + " | B: " + bonusConsecutiveAlphaUC + "] Consecutive Uppercase Letters"
+                + "\n[C: " + countConsecutiveAlphaLC + " | B: " + bonusConsecutiveAlphaLC + "] Consecutive Lowercase Letters"
+                + "\n[C: " + countConsecutiveNumber + " | B: " + bonusConsecutiveNumber + "] Consecutive Numbers"
+                + "\n[C: " + countSeqAlpha + " | B: " + bonusSeqAlpha + "] Sequential Letters"
+                + "\n[C: " + countSeqNumber + " | B: " + bonusSeqNumber + "] Sequential Numbers"
+                + "\n[C: " + countSeqSymbol + " | B: " + bonusSeqSymbol + "] Sequential Symbols";
     }
 }
 

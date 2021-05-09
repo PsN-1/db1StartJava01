@@ -20,12 +20,20 @@ class PasswordMeterV3Test {
                 "[C: 7 | B: 14] Middle Numbers or Symbols\n" +
                 "[C: 5 | B: 10] Requirements\n" +
                 "Deductions\n" +
-                "[C: 0 | B: 0] Letters Only";
+                "[C: 0 | B: 0] Letters Only\n" +
+                "[C: 0 | B: 0] Numbers Only\n" +
+                "[C: 2 | B: 1] Repeat Characters (Case Insensitive)\n" +
+                "[C: 3 | B: 6] Consecutive Uppercase Letters\n" +
+                "[C: 7 | B: 14] Consecutive Lowercase Letters\n" +
+                "[C: 3 | B: 6] Consecutive Numbers\n" +
+                "[C: 0 | B: 0] Sequential Letters\n" +
+                "[C: 1 | B: 3] Sequential Numbers\n" +
+                "[C: 0 | B: 0] Sequential Symbols";
 
 
         var result = new PasswordMeterV3("asdfhjkiK4123*@^DFDS");
-        System.out.println(result);
-//        assertEquals(expected, result.toString());
+//        System.out.println(result);
+        assertEquals(expected, result.toString());
     }
 
 
