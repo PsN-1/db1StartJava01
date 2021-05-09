@@ -1,6 +1,6 @@
 package passwordMeter;
 
 public enum OperationType {
-    ADDITTIONS,
+    ADDITIONS,
     DEDUCTIONS
 }

@@ -1,6 +1,5 @@
 package passwordMeter;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class NumbersOnly extends  RequirementProperty implements DeductionBuilder{
@@ -14,7 +13,7 @@ public class NumbersOnly extends  RequirementProperty implements DeductionBuilde
     }
 
     public void calculateCountAndBonusOfNumbersOnly(String password){
-        Map<String, Integer> resultsArr = new HashMap<String, Integer>();
+        Map<String, Integer> resultsArr;
         resultsArr = getAllValues(password);
         if( resultsArr.get("countAlphaLowerCase") == 0 && resultsArr.get("countAlphaUpperCase") == 0 && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") > 0) {
             countOfNumbersOnly = resultsArr.get("countLength");

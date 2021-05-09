@@ -12,7 +12,7 @@ class NumberOfCharactersTest {
         assertEquals(0, result.getCount());
         assertEquals(0, result.getBonus());
         assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
     @Test
@@ -21,7 +21,7 @@ class NumberOfCharactersTest {
         assertEquals(7, result.getCount());
         assertEquals(28, result.getBonus());
         assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
     @Test
@@ -30,7 +30,7 @@ class NumberOfCharactersTest {
         assertEquals(8, result.getCount());
         assertEquals(32, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
     @Test
     void shouldReturnExpectedValuesWithPasswordWithCharactersAndRequirementExceptional() {
@@ -38,7 +38,7 @@ class NumberOfCharactersTest {
         assertEquals(9, result.getCount());
         assertEquals(36, result.getBonus());
         assertEquals(RequirementLevel.EXCEPTIONAL, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
 }

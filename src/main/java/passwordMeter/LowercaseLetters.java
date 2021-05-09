@@ -3,7 +3,7 @@ package passwordMeter;
 public class LowercaseLetters extends RequirementProperty{
     private RequirementLevel reqLevel;
     private int countAlphaLowerCase, bonusAlphaLowerCase;
-    private int countLength = password.length();
+    private final int countLength = password.length();
 
     public LowercaseLetters(String password) {
         super(password);
@@ -14,8 +14,8 @@ public class LowercaseLetters extends RequirementProperty{
 
     public void calculateCountOfLowerCaseLetter(String password) {
         String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-        for (int i = 0; i < arrPwd.length; i++) {
-            if (arrPwd[i].matches("[a-z]")) {
+        for (String s : arrPwd) {
+            if (s.matches("[a-z]")) {
                 countAlphaLowerCase++;
             }
         }
@@ -55,7 +55,7 @@ public class LowercaseLetters extends RequirementProperty{
 
     @Override
     OperationType getOperationType() {
-        return OperationType.ADDITTIONS;
+        return OperationType.ADDITIONS;
     }
 }
 

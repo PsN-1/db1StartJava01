@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class RequirementsTest {
 
     @Test
-    void main(){
-        var result = new Requirements("1qW@");
-    }
-
-    @Test
     void shouldReturnCorrectAmountOfRequirementsAndLevelFailure() {
         var result = new Requirements("123456");
         assertEquals(1, result.getCount());

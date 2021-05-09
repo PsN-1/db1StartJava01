@@ -2,26 +2,26 @@ package passwordMeter;
 
 public class Numbers extends RequirementProperty {
     private RequirementLevel reqLevel;
-    private int countLength = password.length();
+    private final int countLength = password.length();
     private int countNumber, bonusNumber;
 
     public Numbers(String password) {
         super(password);
         calculateCountOfNumbers(password);
-        calculateBonusNumber(password);
+        calculateBonusNumber();
         calculateRequirementLevel();
     }
 
     public void calculateCountOfNumbers(String password) {
         String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
-        for (int i = 0; i < arrPwd.length; i++) {
-            if (arrPwd[i].matches("[0-9]")) {
+        for (String s : arrPwd) {
+            if (s.matches("[0-9]")) {
                 countNumber++;
             }
         }
     }
 
-    public void calculateBonusNumber(String password) {
+    public void calculateBonusNumber() {
         if (countNumber > 0 && countNumber < countLength) {
             int multiplierNumber = 4;
 //            score = score + countNumber * multiplierNumber;
@@ -56,6 +56,6 @@ public class Numbers extends RequirementProperty {
 
     @Override
     OperationType getOperationType() {
-        return OperationType.ADDITTIONS;
+        return OperationType.ADDITIONS;
     }
 }

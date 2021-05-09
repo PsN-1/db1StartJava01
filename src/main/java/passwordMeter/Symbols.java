@@ -14,8 +14,8 @@ public class Symbols extends RequirementProperty{
     public void calculateCountOfSymbols(String password) {
         String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
 
-        for (int i = 0; i < arrPwd.length; i++) {
-            if (arrPwd[i].matches("[^a-zA-Z0-9_]")) {
+        for (String s : arrPwd) {
+            if (s.matches("[^a-zA-Z0-9_]")) {
                 countSymbol++;
             }
         }
@@ -56,6 +56,6 @@ public class Symbols extends RequirementProperty{
 
     @Override
     OperationType getOperationType() {
-        return OperationType.ADDITTIONS;
+        return OperationType.ADDITIONS;
     }
 }

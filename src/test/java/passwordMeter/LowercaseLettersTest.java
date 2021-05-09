@@ -11,7 +11,7 @@ class LowercaseLettersTest {
         assertEquals(0, result.getCount());
         assertEquals(0, result.getBonus());
         assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
     @Test
     void shouldReturnExpectedValuesWithPasswordWithLowerCaseLettersRequirementExceptional() {
@@ -19,7 +19,7 @@ class LowercaseLettersTest {
         assertEquals(2, result.getCount());
         assertEquals(8, result.getBonus());
         assertEquals(RequirementLevel.EXCEPTIONAL, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
     @Test
@@ -28,6 +28,6 @@ class LowercaseLettersTest {
         assertEquals(1, result.getCount());
         assertEquals(10, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITTIONS, result.getOperationType());
+        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 }

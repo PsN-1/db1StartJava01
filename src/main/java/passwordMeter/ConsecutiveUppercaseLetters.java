@@ -8,7 +8,7 @@ public class ConsecutiveUppercaseLetters extends RequirementProperty {
     public ConsecutiveUppercaseLetters(String password) {
         super(password);
         calculateCountOfConsecutiveUpperCaseLetters(password);
-        calculatecalculateBonusOfConsecutiveUpperCaseLetters();
+        calculateBonusOfConsecutiveUpperCaseLetters();
         calculateRequirementLevel();
     }
 
@@ -27,7 +27,7 @@ public class ConsecutiveUppercaseLetters extends RequirementProperty {
         }
     }
 
-    public void calculatecalculateBonusOfConsecutiveUpperCaseLetters() {
+    public void calculateBonusOfConsecutiveUpperCaseLetters() {
         if (countConsecutiveUppercaseLetters > 0) {
             int multiplierConsecutiveAlphaUC = 2;
             bonusConsecutiveUppercaseLetters = countConsecutiveUppercaseLetters * multiplierConsecutiveAlphaUC;

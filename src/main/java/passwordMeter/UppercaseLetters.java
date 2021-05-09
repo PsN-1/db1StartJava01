@@ -3,7 +3,7 @@ package passwordMeter;
 public class UppercaseLetters extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int countAlphaUpperCase, bonusAlphaUpperCase;
-    private int countLength = password.length();
+    private final int countLength = password.length();
 
     public UppercaseLetters(String password) {
         super(password);
@@ -15,8 +15,8 @@ public class UppercaseLetters extends RequirementProperty {
     public void calculateCountOfUpperCaseLetter(String password) {
         String[] arrPwd = password.replaceAll("\\s+", "").split("\\s*");
 
-        for (int i = 0; i < arrPwd.length; i++) {
-            if (arrPwd[i].matches("[A-Z]")) {
+        for (String s : arrPwd) {
+            if (s.matches("[A-Z]")) {
                 countAlphaUpperCase++;
             }
         }
@@ -56,6 +56,6 @@ public class UppercaseLetters extends RequirementProperty {
 
     @Override
     OperationType getOperationType() {
-        return OperationType.ADDITTIONS;
+        return OperationType.ADDITIONS;
     }
 }

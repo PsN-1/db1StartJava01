@@ -60,6 +60,6 @@ public class MiddleNumbersOrSymbols extends RequirementProperty{
 
     @Override
     OperationType getOperationType() {
-        return OperationType.ADDITTIONS;
+        return OperationType.ADDITIONS;
     }
 }

@@ -244,7 +244,7 @@ public class PasswordMeterV2 {
         }
     }
 
-    public String checkPassword(String candidate) {
+    public void checkPassword(String candidate) {
         password = candidate;
 
         numberOfCharacters();
@@ -327,7 +327,6 @@ public class PasswordMeterV2 {
         /* Determine complexity based on overall score */
         calculatePasswordComplexity();
 
-        return candidate;
     }
 
     @Override
