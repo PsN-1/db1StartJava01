@@ -73,7 +73,6 @@ public class PasswordMeterV3 {
     }
 }
 
-class ConsecutiveUppercaseLetters {}
 class ConsecutiveLowercaseLetters {}
 class ConsecutiveNumbers {}
 class SequentialLetters {}

@@ -1,6 +1,6 @@
 package passwordMeter;
 
-public class RepeatCharacters extends RequirementProperty implements DeductionBuilder{
+public class RepeatCharacters extends RequirementProperty {
     private RequirementLevel reqLevel;
     public int countRepeatedCharacter, bonusRepeatedCharacter;
     private double incrementDeductionOfRepeatedChars;
