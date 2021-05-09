@@ -73,6 +73,5 @@ public class PasswordMeterV3 {
     }
 }
 
-class SequentialLetters {}
 class SequentialNumbers {}
 class SequentialSymbols {}
