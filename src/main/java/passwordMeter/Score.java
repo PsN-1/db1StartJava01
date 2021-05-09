@@ -107,6 +107,13 @@ public class Score implements ScoreBuilder{
         if (countRequirements > nMinReqChars) {
             score = score + countRequirements * 2;
         }
+
+        if (score > 100) {
+            score = 100;
+        } else if (score < 0 ) {
+            score = 0;
+        }
+
         return score;
     }
 }

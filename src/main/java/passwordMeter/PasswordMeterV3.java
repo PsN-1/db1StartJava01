@@ -75,6 +75,9 @@ public class PasswordMeterV3 {
 
         countSeqSymbol = new SequentialSymbols(password).getCount();
         bonusSeqSymbol = new SequentialSymbols(password).getBonus();
+
+        score = new Score(password).calculateScore();
+        sComplexity = new Complexity(score).calculatePasswordComplexity();
     }
 
     @Override
