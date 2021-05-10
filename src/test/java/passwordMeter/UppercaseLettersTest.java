@@ -12,7 +12,6 @@ class UppercaseLettersTest {
         assertEquals(0, result.getCount());
         assertEquals(0, result.getBonus());
         assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
     @Test
@@ -21,7 +20,6 @@ class UppercaseLettersTest {
         assertEquals(2, result.getCount());
         assertEquals(8, result.getBonus());
         assertEquals(RequirementLevel.EXCEPTIONAL, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
     @Test
@@ -30,6 +28,5 @@ class UppercaseLettersTest {
         assertEquals(1, result.getCount());
         assertEquals(10, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 }

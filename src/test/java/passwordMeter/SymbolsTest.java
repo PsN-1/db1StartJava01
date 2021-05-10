@@ -11,7 +11,6 @@ class SymbolsTest {
         assertEquals(0, result.getCount());
         assertEquals(0, result.getBonus());
         assertEquals(RequirementLevel.FAILURE, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
     @Test
@@ -20,7 +19,6 @@ class SymbolsTest {
         assertEquals(2, result.getCount());
         assertEquals(12, result.getBonus());
         assertEquals(RequirementLevel.EXCEPTIONAL, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 
     @Test
@@ -29,6 +27,5 @@ class SymbolsTest {
         assertEquals(1, result.getCount());
         assertEquals(6, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
-        assertEquals(OperationType.ADDITIONS, result.getOperationType());
     }
 }

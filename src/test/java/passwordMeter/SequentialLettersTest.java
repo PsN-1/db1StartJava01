@@ -19,4 +19,11 @@ class SequentialLettersTest {
         assertEquals(6, result.getBonus());
         assertEquals(RequirementLevel.WARNING, result.getRequirementLevel());
     }
+    @Test
+    void shouldReturnDeductionSequentialLettersWithRequirementWarning2() {
+        var result = new SequentialLetters("ABCshdjksal");
+        assertEquals(1, result.getCount());
+        assertEquals(3, result.getBonus());
+        assertEquals(RequirementLevel.WARNING, result.getRequirementLevel());
+    }
 }

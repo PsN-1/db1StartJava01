@@ -53,9 +53,4 @@ public class UppercaseLetters extends RequirementProperty {
     RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.ADDITIONS;
-    }
 }

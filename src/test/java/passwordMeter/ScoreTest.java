@@ -13,6 +13,19 @@ class ScoreTest {
     }
 
     @Test
+    void shouldReturnZeroValueToTestUnder0Score() {
+        var result = new Score("1111111");
+        assertEquals(0, result.calculateScore());
+    }
+
+
+    @Test
+    void shouldReturnExpectedScoreWithSequenceOfSymbols() {
+        var result = new Score("ssshdj@#$ksabcl");
+        assertEquals(63, result.calculateScore());
+    }
+
+    @Test
     void shouldReturnExpectedScoreLowerUpperAndNumbers() {
         var result = new Score("asdfhjkiK41");
         assertEquals(72, result.calculateScore());
@@ -23,7 +36,5 @@ class ScoreTest {
         var result = new Score("asdfhjkiK41@");
         assertEquals(90, result.calculateScore());
     }
-
-
 
 }

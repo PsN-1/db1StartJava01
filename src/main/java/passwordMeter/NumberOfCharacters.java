@@ -44,11 +44,4 @@ public class NumberOfCharacters extends RequirementProperty {
     RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.ADDITIONS;
-    }
-
-
 }

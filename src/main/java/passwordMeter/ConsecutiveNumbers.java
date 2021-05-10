@@ -57,8 +57,4 @@ public class ConsecutiveNumbers extends RequirementProperty{
         return reqLevel;
     }
 
-    @Override
-    OperationType getOperationType() {
-        return OperationType.DEDUCTIONS;
-    }
 }

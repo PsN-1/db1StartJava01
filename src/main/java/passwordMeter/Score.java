@@ -2,7 +2,7 @@ package passwordMeter;
 
 import java.util.Map;
 
-public class Score implements ScoreBuilder{
+public class Score implements scoreBuilder {
     String password;
 
     private final int countLength;
@@ -20,11 +20,13 @@ public class Score implements ScoreBuilder{
     private final int countSeqSymbol;
     private final int countRequirements;
 
+    int bonusSeqAlpha, bonusSeqSymbol;
+
     public Score(String password) {
         this.password = password;
 
         Map<String, Integer> resultsCountArray;
-        resultsCountArray = getValuesToCalculateScore(password);
+        resultsCountArray = getAllVariables(password);
 
         countLength = resultsCountArray.get("countLength");
         countAlphaUC = resultsCountArray.get("countAlphaUpperCase");
@@ -41,7 +43,9 @@ public class Score implements ScoreBuilder{
         countSeqSymbol = resultsCountArray.get("countSequentialSymbols");
         countRequirements = resultsCountArray.get("countRequirements");
 
-        bonusRepChar = resultsCountArray.get("countSymbol");
+        bonusRepChar = resultsCountArray.get("bonusRepeatedCharacter");
+        bonusSeqAlpha = resultsCountArray.get("bonusSequentialLetters");
+        bonusSeqSymbol = resultsCountArray.get("bonusSequentialSymbols");
 
         calculateScore();
     }
@@ -90,16 +94,14 @@ public class Score implements ScoreBuilder{
             score = score - countConsecutiveNumber * multiplierConsecutiveNumber;
         }
         if (countSeqAlpha > 0) {
-            int multiplierSeqAlpha = 3;
-            score = score - countSeqAlpha * multiplierSeqAlpha;
+            score = score - bonusSeqAlpha;
         }
         if (countSeqNumber > 0) {
             int multiplierSeqNumber = 3;
             score = score - countSeqNumber * multiplierSeqNumber;
         }
         if (countSeqSymbol > 0) {
-            int multiplierSeqSymbol = 3;
-            score = score - countSeqSymbol * multiplierSeqSymbol;
+            score = score - bonusSeqSymbol;
         }
 
         int MINIMUM_LENGTH = 8;

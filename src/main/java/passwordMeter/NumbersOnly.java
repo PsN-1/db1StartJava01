@@ -14,7 +14,7 @@ public class NumbersOnly extends  RequirementProperty implements DeductionBuilde
 
     public void calculateCountAndBonusOfNumbersOnly(String password){
         Map<String, Integer> resultsArr;
-        resultsArr = getAllValues(password);
+        resultsArr = getAllValues2(password);
         if( resultsArr.get("countAlphaLowerCase") == 0 && resultsArr.get("countAlphaUpperCase") == 0 && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") > 0) {
             countOfNumbersOnly = resultsArr.get("countLength");
             bonusOfNumbersOnly = resultsArr.get("countLength");
@@ -42,10 +42,5 @@ public class NumbersOnly extends  RequirementProperty implements DeductionBuilde
     @Override
     RequirementLevel getRequirementLevel() {
         return reqLevel;
-    }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.DEDUCTIONS;
     }
 }

@@ -61,9 +61,4 @@ public class RepeatCharacters extends RequirementProperty {
     RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.DEDUCTIONS;
-    }
 }

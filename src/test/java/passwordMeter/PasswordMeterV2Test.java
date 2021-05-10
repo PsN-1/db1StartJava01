@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PasswordMeterV2Test {
 
     @Test
-    void checkPassword() {
+    void passwordWithOnlyNumbers() {
 
         var expected = "Password: 123456\n" +
                 "Score: 4\n" +
@@ -95,5 +95,62 @@ class PasswordMeterV2Test {
         assertEquals(expected, result.toString());
     }
 
+    @Test
+    void main3() {
+        var expected = "Password: ssshdjkssabcl\n" +
+                "Score: 9\n" +
+                "Complexity: Very Weak\n" +
+                "Addictions\n" +
+                "[C: 13 | B: 52] Number of Characters\n" +
+                "[C: 0 | B: 0] Uppercase Letters\n" +
+                "[C: 13 | B: 0] Lowercase Letters\n" +
+                "[C: 0 | B: 0] Numbers\n" +
+                "[C: 0 | B: 0] Symbols\n" +
+                "[C: 0 | B: 0] Middle Numbers or Symbols\n" +
+                "[C: 2 | B: 0] Requirements\n" +
+                "Deductions\n" +
+                "[C: 13 | B: 13] Letters Only\n" +
+                "[C: 0 | B: 0] Numbers Only\n" +
+                "[C: 5 | B: 3] Repeat Characters (Case Insensitive)\n" +
+                "[C: 0 | B: 0] Consecutive Uppercase Letters\n" +
+                "[C: 12 | B: 24] Consecutive Lowercase Letters\n" +
+                "[C: 0 | B: 0] Consecutive Numbers\n" +
+                "[C: 1 | B: 3] Sequential Letters\n" +
+                "[C: 0 | B: 0] Sequential Numbers\n" +
+                "[C: 0 | B: 0] Sequential Symbols";
+
+        var result = new PasswordMeterV2("ssshdjkssabcl");
+//        System.out.println(result);
+        assertEquals(expected, result.toString());
+    }
+    @Test
+    void main4() {
+        var expected = "Password: ssshdj@#$ksabcl\n" +
+                "Score: 63\n" +
+                "Complexity: Strong\n" +
+                "Addictions\n" +
+                "[C: 15 | B: 60] Number of Characters\n" +
+                "[C: 0 | B: 0] Uppercase Letters\n" +
+                "[C: 12 | B: 6] Lowercase Letters\n" +
+                "[C: 0 | B: 0] Numbers\n" +
+                "[C: 3 | B: 18] Symbols\n" +
+                "[C: 3 | B: 6] Middle Numbers or Symbols\n" +
+                "[C: 3 | B: 0] Requirements\n" +
+                "Deductions\n" +
+                "[C: 0 | B: 0] Letters Only\n" +
+                "[C: 0 | B: 0] Numbers Only\n" +
+                "[C: 4 | B: 1] Repeat Characters (Case Insensitive)\n" +
+                "[C: 0 | B: 0] Consecutive Uppercase Letters\n" +
+                "[C: 10 | B: 20] Consecutive Lowercase Letters\n" +
+                "[C: 0 | B: 0] Consecutive Numbers\n" +
+                "[C: 1 | B: 3] Sequential Letters\n" +
+                "[C: 0 | B: 0] Sequential Numbers\n" +
+                "[C: 1 | B: 3] Sequential Symbols";
+
+        var result = new PasswordMeterV2("ssshdj@#$ksabcl");
+//        System.out.println(result);
+        assertEquals(expected, result.toString());
+    }
 
 }
+

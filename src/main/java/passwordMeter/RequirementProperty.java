@@ -12,8 +12,4 @@ public abstract class RequirementProperty {
     abstract int getBonus();
 
     abstract RequirementLevel getRequirementLevel();
-
-    abstract OperationType getOperationType();
-
-
 }

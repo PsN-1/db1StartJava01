@@ -8,10 +8,18 @@ class RepeatCharactersTest {
 
     @Test
     void shouldReturnZeroWithRequirementSufficient(){
-        var result = new RepeatCharacters("");
+        var result = new RepeatCharacters("123");
         assertEquals(0, result.getCount());
         assertEquals(0, result.getBonus());
         assertEquals(RequirementLevel.SUFFICIENT, result.getRequirementLevel());
+    }
+
+    @Test
+    void shouldReturnZeroWithRequirementSufficient2(){
+        var result = new RepeatCharacters("11");
+        assertEquals(2, result.getCount());
+        assertEquals(4, result.getBonus());
+        assertEquals(RequirementLevel.WARNING, result.getRequirementLevel());
     }
 
     @Test

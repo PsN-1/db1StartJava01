@@ -14,20 +14,20 @@ public class Requirements extends RequirementProperty implements RequirementBuil
         calculateRequirementLevel();
     }
 
-     void calculateCountOfRequirements(){
+    void calculateCountOfRequirements(){
         var resultsArr = new ArrayList<RequirementProperty>();
         resultsArr = getAllCountValues(this.password);
         int minimumLength = 8;
 
-         for (RequirementProperty requirementProperty : resultsArr) {
-             int minimumValue = requirementProperty.getClass() == NumberOfCharacters.class ? (minimumLength) : 1;
+        for (RequirementProperty requirementProperty : resultsArr) {
+            int minimumValue = requirementProperty.getClass() == NumberOfCharacters.class ? (minimumLength) : 1;
 
-             if (requirementProperty.getCount() == minimumValue) {
-                 countRequirements++;
-             } else if (requirementProperty.getCount() > minimumValue) {
-                 countRequirements++;
-             }
-         }
+            if (requirementProperty.getCount() == minimumValue) {
+                countRequirements++;
+            } else if (requirementProperty.getCount() > minimumValue) {
+                countRequirements++;
+            }
+        }
     }
 
     void calculateBonusOfRequirements() {
@@ -66,10 +66,5 @@ public class Requirements extends RequirementProperty implements RequirementBuil
     @Override
     RequirementLevel getRequirementLevel() {
         return reqLevel;
-    }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.ADDITIONS;
     }
 }

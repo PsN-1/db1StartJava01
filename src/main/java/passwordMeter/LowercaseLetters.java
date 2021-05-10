@@ -23,7 +23,6 @@ public class LowercaseLetters extends RequirementProperty{
 
     public void calculateBonusLetterLowerCase() {
         if (countAlphaLowerCase > 0 && countAlphaLowerCase < countLength) {
-//            score = score + (countLength - countAlphaLowerCase) * 2;
             bonusAlphaLowerCase = (countLength - countAlphaLowerCase) * 2;
         }
     }
@@ -51,11 +50,6 @@ public class LowercaseLetters extends RequirementProperty{
     @Override
     RequirementLevel getRequirementLevel() {
         return reqLevel;
-    }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.ADDITIONS;
     }
 }
 

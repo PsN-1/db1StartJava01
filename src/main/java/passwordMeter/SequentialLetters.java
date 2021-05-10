@@ -51,9 +51,4 @@ public class SequentialLetters extends  RequirementProperty{
     RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.DEDUCTIONS;
-    }
 }

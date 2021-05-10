@@ -42,7 +42,6 @@ public class MiddleNumbersOrSymbols extends RequirementProperty{
         }
     }
 
-
     @Override
     int getCount() {
         return countMidChar;
@@ -56,10 +55,5 @@ public class MiddleNumbersOrSymbols extends RequirementProperty{
     @Override
     RequirementLevel getRequirementLevel() {
         return reqLevel;
-    }
-
-    @Override
-    OperationType getOperationType() {
-        return OperationType.ADDITIONS;
     }
 }

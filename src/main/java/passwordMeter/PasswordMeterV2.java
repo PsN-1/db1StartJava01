@@ -1,80 +1,85 @@
 package passwordMeter;
 
-public class PasswordMeterV2 {
-    String password;
-    String sComplexity;
+import java.util.Map;
 
-    int score;
-    int bonusLength, countLength;
-    int bonusAlphaUpperCase, countAlphaUpperCase;
-    int bonusAlphaLowerCase, countAlphaLowerCase;
-    int bonusNumber, countNumber;
-    int bonusSymbol, countSymbol;
-    int bonusMidChar, countMidChar;
-    int bonusRequirements, countRequirements;
+public class PasswordMeterV2 implements scoreBuilder {
+    private final String password;
+    private final String sComplexity;
 
-    int bonusAlphasOnly, countAlphasOnly;
-    int countNumbersOnly, bonusNumbersOnly;
-    int countRepChar, bonusRepChar;
-    int countConsecutiveAlphaUC, bonusConsecutiveAlphaUC;
-    int countConsecutiveAlphaLC, bonusConsecutiveAlphaLC;
-    int countConsecutiveNumber, bonusConsecutiveNumber;
-    int countSeqAlpha, bonusSeqAlpha;
-    int countSeqNumber, bonusSeqNumber;
-    int countSeqSymbol, bonusSeqSymbol;
+    private final int score;
+    private final int bonusLength, countLength;
+    private final int bonusAlphaUpperCase, countAlphaUpperCase;
+    private final int bonusAlphaLowerCase, countAlphaLowerCase;
+    private final int bonusNumber, countNumber;
+    private final int bonusSymbol, countSymbol;
+    private final int bonusMidChar, countMidChar;
+    private final int bonusRequirements, countRequirements;
+
+    private final int bonusAlphasOnly, countAlphasOnly;
+    private final int countNumbersOnly, bonusNumbersOnly;
+    private final int countRepChar, bonusRepChar;
+    private final int countConsecutiveAlphaUC, bonusConsecutiveAlphaUC;
+    private final int countConsecutiveAlphaLC, bonusConsecutiveAlphaLC;
+    private final int countConsecutiveNumber, bonusConsecutiveNumber;
+    private final int countSeqAlpha, bonusSeqAlpha;
+    private final int countSeqNumber, bonusSeqNumber;
+    private final int countSeqSymbol, bonusSeqSymbol;
 
     public PasswordMeterV2(String password) {
         this.password = password;
 
         // Additions
-        countLength = new NumberOfCharacters(password).getCount();
-        bonusLength = new NumberOfCharacters(password).getBonus();
+        Map<String, Integer> resultsCountArray;
+        resultsCountArray = getAllVariables(password);
 
-        countAlphaUpperCase = new UppercaseLetters(password).getCount();
-        bonusAlphaUpperCase = new UppercaseLetters(password).getBonus();
+        countLength = resultsCountArray.get("countLength");
+        bonusLength = resultsCountArray.get("bonusLength");
 
-        countAlphaLowerCase = new LowercaseLetters(password).getCount();
-        bonusAlphaLowerCase = new LowercaseLetters(password).getBonus();
+        countAlphaUpperCase = resultsCountArray.get("countAlphaUpperCase");
+        bonusAlphaUpperCase = resultsCountArray.get("bonusAlphaUpperCase");
 
-        countNumber = new Numbers(password).getCount();
-        bonusNumber = new Numbers(password).getBonus();
+        countAlphaLowerCase = resultsCountArray.get("countAlphaLowerCase");
+        bonusAlphaLowerCase = resultsCountArray.get("bonusAlphaLowerCase");
 
-        countSymbol = new Symbols(password).getCount();
-        bonusSymbol = new Symbols(password).getBonus();
+        countNumber = resultsCountArray.get("countNumber");
+        bonusNumber = resultsCountArray.get("bonusNumber");
 
-        countMidChar = new MiddleNumbersOrSymbols(password).getCount();
-        bonusMidChar = new MiddleNumbersOrSymbols(password).getBonus();
+        countSymbol = resultsCountArray.get("countSymbol");
+        bonusSymbol = resultsCountArray.get("bonusSymbol");
 
-        countRequirements = new Requirements(password).getCount();
-        bonusRequirements = new Requirements(password).getBonus();
+        countMidChar = resultsCountArray.get("countMiddleCharacter");
+        bonusMidChar = resultsCountArray.get("bonusMiddleCharacter");
+
+        countRequirements = resultsCountArray.get("countRequirements");
+        bonusRequirements = resultsCountArray.get("bonusRequirements");
 
         // Deductions
-        countAlphasOnly = new LettersOnly(password).getCount();
-        bonusAlphasOnly = new LettersOnly(password).getBonus();
+        countAlphasOnly = resultsCountArray.get("countLettersOnly");
+        bonusAlphasOnly = resultsCountArray.get("bonusLettersOnly");
 
-        countNumbersOnly = new NumbersOnly(password).getCount();
-        bonusNumbersOnly = new NumbersOnly(password).getBonus();
+        countNumbersOnly = resultsCountArray.get("countOfNumbersOnly");
+        bonusNumbersOnly = resultsCountArray.get("bonusOfNumbersOnly");
 
-        countRepChar = new RepeatCharacters(password).getCount();
-        bonusRepChar = new RepeatCharacters(password).getBonus();
+        countRepChar = resultsCountArray.get("countRepeatedCharacter");
+        bonusRepChar = resultsCountArray.get("bonusRepeatedCharacter");
 
-        countConsecutiveAlphaUC = new ConsecutiveUppercaseLetters(password).getCount();
-        bonusConsecutiveAlphaUC = new ConsecutiveUppercaseLetters(password).getBonus();
+        countConsecutiveAlphaUC = resultsCountArray.get("countConsecutiveUppercaseLetter");
+        bonusConsecutiveAlphaUC = resultsCountArray.get("bonusConsecutiveUppercaseLetter");
 
-        countConsecutiveAlphaLC = new ConsecutiveLowercaseLetters(password).getCount();
-        bonusConsecutiveAlphaLC = new ConsecutiveLowercaseLetters(password).getBonus();
+        countConsecutiveAlphaLC = resultsCountArray.get("countConsecutiveLowercaseLetter");
+        bonusConsecutiveAlphaLC = resultsCountArray.get("bonusConsecutiveLowercaseLetter");
 
-        countConsecutiveNumber = new ConsecutiveNumbers(password).getCount();
-        bonusConsecutiveNumber = new ConsecutiveNumbers(password).getBonus();
+        countConsecutiveNumber = resultsCountArray.get("countConsecutiveNumber");
+        bonusConsecutiveNumber = resultsCountArray.get("bonusConsecutiveNumber");
 
-        countSeqAlpha = new SequentialLetters(password).getCount();
-        bonusSeqAlpha = new SequentialLetters(password).getBonus();
+        countSeqAlpha = resultsCountArray.get("countSequentialLetters");
+        bonusSeqAlpha = resultsCountArray.get("bonusSequentialLetters");
 
-        countSeqNumber = new SequentialNumbers(password).getCount();
-        bonusSeqNumber = new SequentialNumbers(password).getBonus();
+        countSeqNumber = resultsCountArray.get("countSequentialNumbers");
+        bonusSeqNumber = resultsCountArray.get("bonusSequentialNumbers");
 
-        countSeqSymbol = new SequentialSymbols(password).getCount();
-        bonusSeqSymbol = new SequentialSymbols(password).getBonus();
+        countSeqSymbol = resultsCountArray.get("countSequentialSymbols");
+        bonusSeqSymbol = resultsCountArray.get("bonusSequentialSymbols");
 
         score = new Score(password).calculateScore();
         sComplexity = new Complexity(score).calculatePasswordComplexity();
