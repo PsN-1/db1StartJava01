@@ -1,4 +1,7 @@
-package passwordMeter;
+package passwordMeter.Additions;
+
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
 
 public class UppercaseLetters extends RequirementProperty {
     private RequirementLevel reqLevel;
@@ -39,17 +42,17 @@ public class UppercaseLetters extends RequirementProperty {
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countAlphaUpperCase;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusAlphaUpperCase;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

@@ -1,8 +1,12 @@
-package passwordMeter;
+package passwordMeter.Additions;
+
+import passwordMeter.Builders.RequirementBuilder;
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
 
 import java.util.ArrayList;
 
-public class Requirements extends RequirementProperty implements RequirementBuilder{
+public class Requirements extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int bonusRequirements, countRequirements;
 
@@ -15,7 +19,8 @@ public class Requirements extends RequirementProperty implements RequirementBuil
 
     void calculateCountOfRequirements(){
         var resultsArr = new ArrayList<RequirementProperty>();
-        resultsArr = getAllCountValues(this.password);
+        var requirementBuilder = new RequirementBuilder();
+        resultsArr = requirementBuilder.getAllCountValues(this.password);
         int minimumLength = 8;
 
         for (RequirementProperty requirementProperty : resultsArr) {
@@ -53,17 +58,17 @@ public class Requirements extends RequirementProperty implements RequirementBuil
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countRequirements;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusRequirements;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

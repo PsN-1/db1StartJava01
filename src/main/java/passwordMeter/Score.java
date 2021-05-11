@@ -1,33 +1,36 @@
 package passwordMeter;
 
+import passwordMeter.Builders.ScoreBuilder;
+
 import java.util.Map;
 
-public class Score implements scoreBuilder {
+public class Score {
     String password;
     private int score;
 
     public Score(String password) {
         this.password = password;
 
-        Map<String, Integer> resultsCountArray;
-        resultsCountArray = getAllVariables(password);
+        Map<String, Integer> resultsCountAndBonusArray;
+        var scoreBuilder = new ScoreBuilder();
+        resultsCountAndBonusArray = scoreBuilder.getAllVariables(password);
 
-        int bonusLength = resultsCountArray.get("bonusLength");
-        int bonusAlphaUC = resultsCountArray.get("bonusAlphaUpperCase");
-        int bonusAlphaLC = resultsCountArray.get("bonusAlphaLowerCase");
-        int bonusNumber = resultsCountArray.get("bonusNumber");
-        int bonusSymbol = resultsCountArray.get("bonusSymbol");
-        int bonusMidChar = resultsCountArray.get("bonusMiddleCharacter");
-        int bonusRepChar = resultsCountArray.get("bonusRepeatedCharacter");
-        int bonusConsecutiveAlphaUC = resultsCountArray.get("bonusConsecutiveUppercaseLetter");
-        int bonusConsecutiveAlphaLC = resultsCountArray.get("bonusConsecutiveLowercaseLetter");
-        int bonusConsecutiveNumber = resultsCountArray.get("bonusConsecutiveNumber");
-        int bonusSeqAlpha = resultsCountArray.get("bonusSequentialLetters");
-        int bonusSeqNumber = resultsCountArray.get("bonusSequentialNumbers");
-        int bonusSeqSymbol = resultsCountArray.get("bonusSequentialSymbols");
-        int bonusRequirements = resultsCountArray.get("bonusRequirements");
-        int bonusLetterOnly = resultsCountArray.get("bonusLettersOnly");
-        int bonusOfNumbersOnly = resultsCountArray.get("bonusOfNumbersOnly");
+        int bonusLength = resultsCountAndBonusArray.get("bonusLength");
+        int bonusAlphaUC = resultsCountAndBonusArray.get("bonusAlphaUpperCase");
+        int bonusAlphaLC = resultsCountAndBonusArray.get("bonusAlphaLowerCase");
+        int bonusNumber = resultsCountAndBonusArray.get("bonusNumber");
+        int bonusSymbol = resultsCountAndBonusArray.get("bonusSymbol");
+        int bonusMidChar = resultsCountAndBonusArray.get("bonusMiddleCharacter");
+        int bonusRepChar = resultsCountAndBonusArray.get("bonusRepeatedCharacter");
+        int bonusConsecutiveAlphaUC = resultsCountAndBonusArray.get("bonusConsecutiveUppercaseLetter");
+        int bonusConsecutiveAlphaLC = resultsCountAndBonusArray.get("bonusConsecutiveLowercaseLetter");
+        int bonusConsecutiveNumber = resultsCountAndBonusArray.get("bonusConsecutiveNumber");
+        int bonusSeqAlpha = resultsCountAndBonusArray.get("bonusSequentialLetters");
+        int bonusSeqNumber = resultsCountAndBonusArray.get("bonusSequentialNumbers");
+        int bonusSeqSymbol = resultsCountAndBonusArray.get("bonusSequentialSymbols");
+        int bonusRequirements = resultsCountAndBonusArray.get("bonusRequirements");
+        int bonusLetterOnly = resultsCountAndBonusArray.get("bonusLettersOnly");
+        int bonusOfNumbersOnly = resultsCountAndBonusArray.get("bonusOfNumbersOnly");
 
         score = bonusLength;
         score += bonusAlphaUC + bonusAlphaLC + bonusNumber + bonusSymbol + bonusMidChar + bonusRequirements;

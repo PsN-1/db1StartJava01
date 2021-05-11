@@ -1,6 +1,9 @@
-package passwordMeter;
+package passwordMeter.Additions;
 
-public class Symbols extends RequirementProperty{
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
+
+public class Symbols extends RequirementProperty {
     private RequirementLevel reqLevel;
     private  int countSymbol, bonusSymbol;
 
@@ -39,17 +42,17 @@ public class Symbols extends RequirementProperty{
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countSymbol;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusSymbol;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

@@ -1,11 +1,14 @@
-package passwordMeter;
+package passwordMeter.Builders;
+
+import passwordMeter.Additions.*;
+import passwordMeter.Deductions.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public interface scoreBuilder {
+public class ScoreBuilder {
 
-    default Map<String, Integer> getAllVariables(String password) {
+    public Map<String, Integer> getAllVariables(String password) {
         Map<String, Integer> results = new HashMap<>();
 
         results.put("countLength", new NumberOfCharacters(password).getCount());

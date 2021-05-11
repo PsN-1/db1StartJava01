@@ -1,8 +1,12 @@
-package passwordMeter;
+package passwordMeter.Deductions;
+
+import passwordMeter.Builders.DeductionBuilder;
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
 
 import java.util.Map;
 
-public class NumbersOnly extends  RequirementProperty implements DeductionBuilder{
+public class NumbersOnly extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int countOfNumbersOnly, bonusOfNumbersOnly;
 
@@ -14,7 +18,8 @@ public class NumbersOnly extends  RequirementProperty implements DeductionBuilde
 
     public void calculateCountAndBonusOfNumbersOnly(String password){
         Map<String, Integer> resultsArr;
-        resultsArr = getAllValues2(password);
+        var deductionBuilder = new DeductionBuilder();
+        resultsArr = deductionBuilder.getAllValuesFromDeductionBuilder(password);
         if( resultsArr.get("countAlphaLowerCase") == 0 && resultsArr.get("countAlphaUpperCase") == 0 && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") > 0) {
             countOfNumbersOnly = resultsArr.get("countLength");
             bonusOfNumbersOnly = resultsArr.get("countLength");
@@ -30,17 +35,17 @@ public class NumbersOnly extends  RequirementProperty implements DeductionBuilde
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countOfNumbersOnly;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusOfNumbersOnly;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

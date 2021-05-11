@@ -1,4 +1,7 @@
-package passwordMeter;
+package passwordMeter.Deductions;
+
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
 
 public class ConsecutiveUppercaseLetters extends RequirementProperty {
     private RequirementLevel reqLevel;
@@ -43,17 +46,17 @@ public class ConsecutiveUppercaseLetters extends RequirementProperty {
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countConsecutiveUppercaseLetters;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusConsecutiveUppercaseLetters;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 

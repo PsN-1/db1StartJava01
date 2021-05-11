@@ -1,6 +1,9 @@
-package passwordMeter;
+package passwordMeter.Additions;
 
-public class LowercaseLetters extends RequirementProperty{
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
+
+public class LowercaseLetters extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int countAlphaLowerCase, bonusAlphaLowerCase;
     private final int countLength = password.length();
@@ -38,17 +41,17 @@ public class LowercaseLetters extends RequirementProperty{
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countAlphaLowerCase;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusAlphaLowerCase;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

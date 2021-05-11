@@ -1,6 +1,8 @@
 package passwordMeter;
 
 import org.junit.jupiter.api.Test;
+import passwordMeter.Deductions.SequentialNumbers;
+import passwordMeter.Enums.RequirementLevel;
 
 import static org.junit.jupiter.api.Assertions.*;
 

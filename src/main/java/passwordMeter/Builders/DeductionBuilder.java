@@ -1,11 +1,13 @@
-package passwordMeter;
+package passwordMeter.Builders;
+
+import passwordMeter.Additions.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public interface DeductionBuilder {
+public class DeductionBuilder {
 
-    default Map<String, Integer> getAllValues2(String password) {
+    public Map<String, Integer> getAllValuesFromDeductionBuilder(String password) {
         Map<String, Integer> results = new HashMap<>();
 
         results.put("countLength", new NumberOfCharacters(password).getCount());

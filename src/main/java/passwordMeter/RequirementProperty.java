@@ -1,5 +1,7 @@
 package passwordMeter;
 
+import passwordMeter.Enums.RequirementLevel;
+
 public abstract class RequirementProperty {
     protected String password;
 
@@ -7,9 +9,9 @@ public abstract class RequirementProperty {
         this.password = password;
     }
 
-    abstract int getCount();
+    public abstract int getCount();
 
-    abstract int getBonus();
+    public abstract int getBonus();
 
-    abstract RequirementLevel getRequirementLevel();
+    public abstract RequirementLevel getRequirementLevel();
 }

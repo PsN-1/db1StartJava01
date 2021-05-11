@@ -1,10 +1,10 @@
 package passwordMeter;
 
-public class Complexity {
+public class PasswordComplexity {
     int score;
     String complexity;
 
-    public Complexity(int score){
+    public PasswordComplexity(int score){
         this.score = score;
         calculatePasswordComplexity();
     }

@@ -1,6 +1,9 @@
-package passwordMeter;
+package passwordMeter.Deductions;
 
-public class SequentialSymbols extends RequirementProperty{
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
+
+public class SequentialSymbols extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int countOfSequentialSymbols, bonusOfSequentialLettersSymbols;
 
@@ -38,17 +41,17 @@ public class SequentialSymbols extends RequirementProperty{
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countOfSequentialSymbols;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusOfSequentialLettersSymbols;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

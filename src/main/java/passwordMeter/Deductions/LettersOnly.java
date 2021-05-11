@@ -1,8 +1,12 @@
-package passwordMeter;
+package passwordMeter.Deductions;
+
+import passwordMeter.Builders.DeductionBuilder;
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
 
 import java.util.Map;
 
-public class LettersOnly extends RequirementProperty implements DeductionBuilder{
+public class LettersOnly extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int countLettersOnly, bonusLettersOnly;
 
@@ -14,7 +18,8 @@ public class LettersOnly extends RequirementProperty implements DeductionBuilder
 
     public void calculateCountAndBonusOfLettersOnly(String password) {
         Map<String, Integer> resultsArr;
-        resultsArr = getAllValues2(password);
+        var deductionBuilder = new DeductionBuilder();
+        resultsArr = deductionBuilder.getAllValuesFromDeductionBuilder(password);
         if ((resultsArr.get("countAlphaLowerCase") > 0 || resultsArr.get("countAlphaUpperCase") > 0) && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") == 0) {
             countLettersOnly = resultsArr.get("countLength");
             bonusLettersOnly = resultsArr.get("countLength");
@@ -30,17 +35,17 @@ public class LettersOnly extends RequirementProperty implements DeductionBuilder
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countLettersOnly;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusLettersOnly;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

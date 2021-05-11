@@ -1,6 +1,9 @@
-package passwordMeter;
+package passwordMeter.Deductions;
 
-public class ConsecutiveNumbers extends RequirementProperty{
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
+
+public class ConsecutiveNumbers extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int countConsecutiveNumber, bonusConsecutiveNumber;
     private Integer nTmpNumber = null;
@@ -43,17 +46,17 @@ public class ConsecutiveNumbers extends RequirementProperty{
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countConsecutiveNumber;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusConsecutiveNumber;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 

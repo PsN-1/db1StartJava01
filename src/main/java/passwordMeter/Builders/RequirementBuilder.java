@@ -1,9 +1,12 @@
-package passwordMeter;
+package passwordMeter.Builders;
+
+import passwordMeter.*;
+import passwordMeter.Additions.*;
 
 import java.util.ArrayList;
 
-interface RequirementBuilder {
-    default ArrayList<RequirementProperty> getAllCountValues(String password) {
+public class RequirementBuilder {
+    public ArrayList<RequirementProperty> getAllCountValues(String password) {
         ArrayList<RequirementProperty> results = new ArrayList<>();
 
         results.add(new NumberOfCharacters(password));

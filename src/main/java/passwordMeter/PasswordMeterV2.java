@@ -1,8 +1,10 @@
 package passwordMeter;
 
+import passwordMeter.Builders.ScoreBuilder;
+
 import java.util.Map;
 
-public class PasswordMeterV2 implements scoreBuilder {
+public class PasswordMeterV2 {
     private final String password;
     private final String sComplexity;
 
@@ -28,61 +30,62 @@ public class PasswordMeterV2 implements scoreBuilder {
     public PasswordMeterV2(String password) {
         this.password = password;
 
+        Map<String, Integer> resultsCountAndBonusArray;
+        var scoreBuilder = new ScoreBuilder();
+        resultsCountAndBonusArray = scoreBuilder.getAllVariables(password);
+
         // Additions
-        Map<String, Integer> resultsCountArray;
-        resultsCountArray = getAllVariables(password);
+        countLength = resultsCountAndBonusArray.get("countLength");
+        bonusLength = resultsCountAndBonusArray.get("bonusLength");
 
-        countLength = resultsCountArray.get("countLength");
-        bonusLength = resultsCountArray.get("bonusLength");
+        countAlphaUpperCase = resultsCountAndBonusArray.get("countAlphaUpperCase");
+        bonusAlphaUpperCase = resultsCountAndBonusArray.get("bonusAlphaUpperCase");
 
-        countAlphaUpperCase = resultsCountArray.get("countAlphaUpperCase");
-        bonusAlphaUpperCase = resultsCountArray.get("bonusAlphaUpperCase");
+        countAlphaLowerCase = resultsCountAndBonusArray.get("countAlphaLowerCase");
+        bonusAlphaLowerCase = resultsCountAndBonusArray.get("bonusAlphaLowerCase");
 
-        countAlphaLowerCase = resultsCountArray.get("countAlphaLowerCase");
-        bonusAlphaLowerCase = resultsCountArray.get("bonusAlphaLowerCase");
+        countNumber = resultsCountAndBonusArray.get("countNumber");
+        bonusNumber = resultsCountAndBonusArray.get("bonusNumber");
 
-        countNumber = resultsCountArray.get("countNumber");
-        bonusNumber = resultsCountArray.get("bonusNumber");
+        countSymbol = resultsCountAndBonusArray.get("countSymbol");
+        bonusSymbol = resultsCountAndBonusArray.get("bonusSymbol");
 
-        countSymbol = resultsCountArray.get("countSymbol");
-        bonusSymbol = resultsCountArray.get("bonusSymbol");
+        countMidChar = resultsCountAndBonusArray.get("countMiddleCharacter");
+        bonusMidChar = resultsCountAndBonusArray.get("bonusMiddleCharacter");
 
-        countMidChar = resultsCountArray.get("countMiddleCharacter");
-        bonusMidChar = resultsCountArray.get("bonusMiddleCharacter");
-
-        countRequirements = resultsCountArray.get("countRequirements");
-        bonusRequirements = resultsCountArray.get("bonusRequirements");
+        countRequirements = resultsCountAndBonusArray.get("countRequirements");
+        bonusRequirements = resultsCountAndBonusArray.get("bonusRequirements");
 
         // Deductions
-        countAlphasOnly = resultsCountArray.get("countLettersOnly");
-        bonusAlphasOnly = resultsCountArray.get("bonusLettersOnly");
+        countAlphasOnly = resultsCountAndBonusArray.get("countLettersOnly");
+        bonusAlphasOnly = resultsCountAndBonusArray.get("bonusLettersOnly");
 
-        countNumbersOnly = resultsCountArray.get("countOfNumbersOnly");
-        bonusNumbersOnly = resultsCountArray.get("bonusOfNumbersOnly");
+        countNumbersOnly = resultsCountAndBonusArray.get("countOfNumbersOnly");
+        bonusNumbersOnly = resultsCountAndBonusArray.get("bonusOfNumbersOnly");
 
-        countRepChar = resultsCountArray.get("countRepeatedCharacter");
-        bonusRepChar = resultsCountArray.get("bonusRepeatedCharacter");
+        countRepChar = resultsCountAndBonusArray.get("countRepeatedCharacter");
+        bonusRepChar = resultsCountAndBonusArray.get("bonusRepeatedCharacter");
 
-        countConsecutiveAlphaUC = resultsCountArray.get("countConsecutiveUppercaseLetter");
-        bonusConsecutiveAlphaUC = resultsCountArray.get("bonusConsecutiveUppercaseLetter");
+        countConsecutiveAlphaUC = resultsCountAndBonusArray.get("countConsecutiveUppercaseLetter");
+        bonusConsecutiveAlphaUC = resultsCountAndBonusArray.get("bonusConsecutiveUppercaseLetter");
 
-        countConsecutiveAlphaLC = resultsCountArray.get("countConsecutiveLowercaseLetter");
-        bonusConsecutiveAlphaLC = resultsCountArray.get("bonusConsecutiveLowercaseLetter");
+        countConsecutiveAlphaLC = resultsCountAndBonusArray.get("countConsecutiveLowercaseLetter");
+        bonusConsecutiveAlphaLC = resultsCountAndBonusArray.get("bonusConsecutiveLowercaseLetter");
 
-        countConsecutiveNumber = resultsCountArray.get("countConsecutiveNumber");
-        bonusConsecutiveNumber = resultsCountArray.get("bonusConsecutiveNumber");
+        countConsecutiveNumber = resultsCountAndBonusArray.get("countConsecutiveNumber");
+        bonusConsecutiveNumber = resultsCountAndBonusArray.get("bonusConsecutiveNumber");
 
-        countSeqAlpha = resultsCountArray.get("countSequentialLetters");
-        bonusSeqAlpha = resultsCountArray.get("bonusSequentialLetters");
+        countSeqAlpha = resultsCountAndBonusArray.get("countSequentialLetters");
+        bonusSeqAlpha = resultsCountAndBonusArray.get("bonusSequentialLetters");
 
-        countSeqNumber = resultsCountArray.get("countSequentialNumbers");
-        bonusSeqNumber = resultsCountArray.get("bonusSequentialNumbers");
+        countSeqNumber = resultsCountAndBonusArray.get("countSequentialNumbers");
+        bonusSeqNumber = resultsCountAndBonusArray.get("bonusSequentialNumbers");
 
-        countSeqSymbol = resultsCountArray.get("countSequentialSymbols");
-        bonusSeqSymbol = resultsCountArray.get("bonusSequentialSymbols");
+        countSeqSymbol = resultsCountAndBonusArray.get("countSequentialSymbols");
+        bonusSeqSymbol = resultsCountAndBonusArray.get("bonusSequentialSymbols");
 
         score = new Score(password).calculateScore();
-        sComplexity = new Complexity(score).calculatePasswordComplexity();
+        sComplexity = new PasswordComplexity(score).calculatePasswordComplexity();
     }
 
     @Override

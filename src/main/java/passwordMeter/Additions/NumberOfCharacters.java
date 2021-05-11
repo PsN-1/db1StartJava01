@@ -1,4 +1,7 @@
-package passwordMeter;
+package passwordMeter.Additions;
+
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
 
 public class NumberOfCharacters extends RequirementProperty {
     private int count;
@@ -41,7 +44,7 @@ public class NumberOfCharacters extends RequirementProperty {
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

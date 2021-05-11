@@ -1,6 +1,9 @@
-package passwordMeter;
+package passwordMeter.Additions;
 
-public class MiddleNumbersOrSymbols extends RequirementProperty{
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
+
+public class MiddleNumbersOrSymbols extends RequirementProperty {
     private RequirementLevel reqLevel;
     private int countMidChar, bonusMidChar;
 
@@ -42,17 +45,17 @@ public class MiddleNumbersOrSymbols extends RequirementProperty{
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countMidChar;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusMidChar;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }

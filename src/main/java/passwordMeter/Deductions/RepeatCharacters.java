@@ -1,4 +1,7 @@
-package passwordMeter;
+package passwordMeter.Deductions;
+
+import passwordMeter.Enums.RequirementLevel;
+import passwordMeter.RequirementProperty;
 
 public class RepeatCharacters extends RequirementProperty {
     private RequirementLevel reqLevel;
@@ -48,17 +51,17 @@ public class RepeatCharacters extends RequirementProperty {
     }
 
     @Override
-    int getCount() {
+    public int getCount() {
         return countRepeatedCharacter;
     }
 
     @Override
-    int getBonus() {
+    public int getBonus() {
         return bonusRepeatedCharacter;
     }
 
     @Override
-    RequirementLevel getRequirementLevel() {
+    public RequirementLevel getRequirementLevel() {
         return reqLevel;
     }
 }
