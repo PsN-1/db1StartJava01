@@ -27,7 +27,6 @@ public class MiddleNumbersOrSymbols extends RequirementProperty{
     public void calculateBonusMiddleCharacters() {
         if (countMidChar > 0) {
             int multiplierMidChar = 2;
-//            score = score + countMidChar * multiplierMidChar;
             bonusMidChar = countMidChar * multiplierMidChar;
         }
     }

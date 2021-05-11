@@ -2,7 +2,6 @@ package passwordMeter;
 
 import java.util.ArrayList;
 
-// additions
 public class Requirements extends RequirementProperty implements RequirementBuilder{
     private RequirementLevel reqLevel;
     private int bonusRequirements, countRequirements;

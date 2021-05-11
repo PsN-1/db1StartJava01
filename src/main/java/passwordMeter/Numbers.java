@@ -24,7 +24,6 @@ public class Numbers extends RequirementProperty {
     public void calculateBonusNumber() {
         if (countNumber > 0 && countNumber < countLength) {
             int multiplierNumber = 4;
-//            score = score + countNumber * multiplierNumber;
             bonusNumber = countNumber * multiplierNumber;
         }
     }

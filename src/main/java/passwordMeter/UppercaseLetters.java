@@ -24,7 +24,6 @@ public class UppercaseLetters extends RequirementProperty {
 
     public void calculateBonusLetterUpperCase() {
         if (countAlphaUpperCase > 0 && countAlphaUpperCase < countLength) {
-//            score = score + (countLength - countAlphaUpperCase) * 2;
             bonusAlphaUpperCase = (countLength - countAlphaUpperCase) * 2;
         }
     }

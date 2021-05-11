@@ -24,7 +24,6 @@ public class Symbols extends RequirementProperty{
     public void calculateBonusSymbol() {
         if (countSymbol > 0) {
             int multiplierSymbol = 6;
-//            score = score + countSymbol * multiplierSymbol;
             bonusSymbol = countSymbol * multiplierSymbol;
         }
     }

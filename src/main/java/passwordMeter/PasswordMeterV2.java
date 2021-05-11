@@ -112,4 +112,3 @@ public class PasswordMeterV2 implements scoreBuilder {
                 + "\n[C: " + countSeqSymbol + " | B: " + bonusSeqSymbol + "] Sequential Symbols";
     }
 }
-
