@@ -1,6 +1,6 @@
 package passwordMeter.Additions;
 
-import passwordMeter.Builders.RequirementBuilder;
+import passwordMeter.Builders.RequirementVariablesBuilder;
 import passwordMeter.Enums.RequirementLevel;
 import passwordMeter.RequirementProperty;
 
@@ -19,7 +19,7 @@ public class Requirements extends RequirementProperty {
 
     void calculateCountOfRequirements(){
         var resultsArr = new ArrayList<RequirementProperty>();
-        var requirementBuilder = new RequirementBuilder();
+        var requirementBuilder = new RequirementVariablesBuilder();
         resultsArr = requirementBuilder.getAllCountValues(this.password);
         int minimumLength = 8;
 

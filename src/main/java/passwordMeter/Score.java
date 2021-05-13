@@ -1,6 +1,6 @@
 package passwordMeter;
 
-import passwordMeter.Builders.ScoreBuilder;
+import passwordMeter.Builders.PasswordMeterVariablesBuilder;
 
 import java.util.Map;
 
@@ -12,7 +12,7 @@ public class Score {
         this.password = password;
 
         Map<String, Integer> resultsCountAndBonusArray;
-        var scoreBuilder = new ScoreBuilder();
+        var scoreBuilder = new PasswordMeterVariablesBuilder();
         resultsCountAndBonusArray = scoreBuilder.getAllVariables(password);
 
         int bonusLength = resultsCountAndBonusArray.get("bonusLength");
@@ -34,18 +34,17 @@ public class Score {
 
         score = bonusLength;
         score += bonusAlphaUC + bonusAlphaLC + bonusNumber + bonusSymbol + bonusMidChar + bonusRequirements;
-        score += - bonusLetterOnly - bonusOfNumbersOnly - bonusRepChar - bonusConsecutiveAlphaUC - bonusConsecutiveAlphaLC - bonusConsecutiveNumber - bonusSeqAlpha - bonusSeqNumber - bonusSeqSymbol;
+        score += - bonusLetterOnly - bonusOfNumbersOnly - bonusRepChar - bonusConsecutiveAlphaUC;
+        score += - bonusConsecutiveAlphaLC - bonusConsecutiveNumber - bonusSeqAlpha - bonusSeqNumber - bonusSeqSymbol;
 
         if (score > 100) {
             score = 100;
         } else if (score < 0 ) {
             score = 0;
         }
-
-        calculateScore();
     }
 
-    public int calculateScore() {
+    public int getScore() {
         return score;
     }
 }

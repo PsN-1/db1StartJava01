@@ -5,7 +5,7 @@ import passwordMeter.Additions.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeductionBuilder {
+public class DeductionVariablesBuilder {
 
     public Map<String, Integer> getAllValuesFromDeductionBuilder(String password) {
         Map<String, Integer> results = new HashMap<>();

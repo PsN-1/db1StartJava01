@@ -5,7 +5,7 @@ import passwordMeter.Additions.*;
 
 import java.util.ArrayList;
 
-public class RequirementBuilder {
+public class RequirementVariablesBuilder {
     public ArrayList<RequirementProperty> getAllCountValues(String password) {
         ArrayList<RequirementProperty> results = new ArrayList<>();
 

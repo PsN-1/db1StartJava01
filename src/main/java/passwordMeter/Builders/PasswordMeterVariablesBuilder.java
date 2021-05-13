@@ -6,7 +6,7 @@ import passwordMeter.Deductions.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ScoreBuilder {
+public class PasswordMeterVariablesBuilder {
 
     public Map<String, Integer> getAllVariables(String password) {
         Map<String, Integer> results = new HashMap<>();

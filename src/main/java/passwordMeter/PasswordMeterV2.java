@@ -1,6 +1,6 @@
 package passwordMeter;
 
-import passwordMeter.Builders.ScoreBuilder;
+import passwordMeter.Builders.PasswordMeterVariablesBuilder;
 
 import java.util.Map;
 
@@ -31,7 +31,7 @@ public class PasswordMeterV2 {
         this.password = password;
 
         Map<String, Integer> resultsCountAndBonusArray;
-        var scoreBuilder = new ScoreBuilder();
+        var scoreBuilder = new PasswordMeterVariablesBuilder();
         resultsCountAndBonusArray = scoreBuilder.getAllVariables(password);
 
         // Additions
@@ -84,7 +84,7 @@ public class PasswordMeterV2 {
         countSeqSymbol = resultsCountAndBonusArray.get("countSequentialSymbols");
         bonusSeqSymbol = resultsCountAndBonusArray.get("bonusSequentialSymbols");
 
-        score = new Score(password).calculateScore();
+        score = new Score(password).getScore();
         sComplexity = new PasswordComplexity(score).calculatePasswordComplexity();
     }
 

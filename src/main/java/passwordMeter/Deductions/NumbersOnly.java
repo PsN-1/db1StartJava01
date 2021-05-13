@@ -1,6 +1,6 @@
 package passwordMeter.Deductions;
 
-import passwordMeter.Builders.DeductionBuilder;
+import passwordMeter.Builders.DeductionVariablesBuilder;
 import passwordMeter.Enums.RequirementLevel;
 import passwordMeter.RequirementProperty;
 
@@ -12,18 +12,22 @@ public class NumbersOnly extends RequirementProperty {
 
     public NumbersOnly(String password) {
         super(password);
-        calculateCountAndBonusOfNumbersOnly(password);
+        calculateCountOfNumbersOnly(password);
+        calculateBonusOfNumbersOnly();
         calculateRequirementLevel();
     }
 
-    public void calculateCountAndBonusOfNumbersOnly(String password){
+    public void calculateCountOfNumbersOnly(String password){
         Map<String, Integer> resultsArr;
-        var deductionBuilder = new DeductionBuilder();
+        var deductionBuilder = new DeductionVariablesBuilder();
         resultsArr = deductionBuilder.getAllValuesFromDeductionBuilder(password);
         if( resultsArr.get("countAlphaLowerCase") == 0 && resultsArr.get("countAlphaUpperCase") == 0 && resultsArr.get("countSymbol") == 0 && resultsArr.get("countNumber") > 0) {
             countOfNumbersOnly = resultsArr.get("countLength");
-            bonusOfNumbersOnly = resultsArr.get("countLength");
         }
+    }
+
+    public void calculateBonusOfNumbersOnly() {
+        bonusOfNumbersOnly = countOfNumbersOnly;
     }
 
     public void calculateRequirementLevel() {
